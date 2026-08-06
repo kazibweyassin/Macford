@@ -32,8 +32,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm text-primary-foreground/55 leading-relaxed max-w-sm font-light">
-              Full-service corporate and commercial counsel from AfriCourts,
-              Nakasero - practical, discreet, and partner-led.
+              Full-service corporate and commercial counsel from AfriCourts in
+              Nakasero, Kampala. Practical, discreet, and partner-led.
             </p>
             <a
               href={siteConfig.whatsapp.href}

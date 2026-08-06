@@ -36,7 +36,7 @@ export function Navbar() {
       <div className="hidden lg:block bg-ink text-primary-foreground">
         <div className="container-page flex h-9 items-center justify-between text-[11px] tracking-wide">
           <p className="text-primary-foreground/50 font-medium">
-            Official site: {siteConfig.domain} · AfriCourts, Nakasero, Kampala
+            Official site: {siteConfig.domain} · AfriCourts, Kampala
           </p>
           <div className="flex items-center gap-6">
             {siteConfig.phones.map((p) => (

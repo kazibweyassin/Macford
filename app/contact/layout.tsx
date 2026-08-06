@@ -5,7 +5,7 @@ import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Contact',
-  description: `Contact ${siteConfig.name} at AfriCourts, Plot 107 Buganda Road, Nakasero, Kampala. Phone, email, WhatsApp, and consultation requests for corporate and commercial legal matters.`,
+  description: `Contact ${siteConfig.name} at AfriCourts, Plot 107 Buganda Road, Kampala. Phone, email, WhatsApp, and consultation requests for corporate and commercial legal matters.`,
   path: '/contact',
   keywords: [
     'contact McFord Advocates',

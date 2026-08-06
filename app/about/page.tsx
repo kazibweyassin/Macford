@@ -11,7 +11,7 @@ import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Our Firm',
-  description: `${siteConfig.name} is a corporate and commercial law firm at AfriCourts, Nakasero, Kampala. Partner-led counsel for businesses, investors, and institutions in Uganda since ${siteConfig.established}.`,
+  description: `${siteConfig.name} is a corporate and commercial law firm at AfriCourts in Kampala. Partner-led counsel for businesses, investors, and institutions in Uganda since ${siteConfig.established}.`,
   path: '/about',
   keywords: [
     'about McFord Advocates',
@@ -63,7 +63,7 @@ export default function About() {
                   </p>
                   <p>
                     We advise companies, mining operators, entrepreneurs, financial
-                    institutions, and investors - with a core focus on mineral law
+                    institutions, and investors, with a core focus on mineral law
                     and precious metal trade, alongside corporate law, mergers and
                     acquisitions, banking and finance, intellectual property,
                     commercial law, and employment law.
@@ -71,7 +71,7 @@ export default function About() {
                   <p>
                     Our chambers are at{' '}
                     <strong className="font-medium text-foreground">
-                      AfriCourts, 4th Floor, Plot 107 Buganda Road, Nakasero
+                      AfriCourts, 4th Floor, Plot 107 Buganda Road, Kampala
                     </strong>
                     , with postal address {siteConfig.address.postal}.
                   </p>
@@ -89,7 +89,7 @@ export default function About() {
 
               <div className="lg:col-span-6 grid grid-cols-2 gap-3">
                 {[
-                  { icon: Building2, label: 'Location', value: 'Nakasero, Kampala' },
+                  { icon: Building2, label: 'Location', value: 'Kampala, Uganda' },
                   { icon: Scale, label: 'Focus', value: 'Mineral · Corporate · Commercial' },
                   { icon: Users, label: 'Approach', value: 'Partner-led service' },
                   { icon: Heart, label: 'Promise', value: 'Integrity & clarity' },

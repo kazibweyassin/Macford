@@ -32,7 +32,7 @@ export default function Contact() {
         <PageHero
           eyebrow="Contact"
           title="Get in touch"
-          description="Speak with our team about your matter. Visit us at AfriCourts, Nakasero, or reach us by phone, email, or WhatsApp."
+          description="Speak with our team about your matter. Visit us at AfriCourts in Kampala, or reach us by phone, email, or WhatsApp."
           crumbs={[
             { label: 'Home', href: '/' },
             { label: 'Contact' },
@@ -280,7 +280,7 @@ export default function Contact() {
               />
             </div>
             <p className="text-center text-xs uppercase tracking-[0.16em] text-muted-foreground mt-5">
-              AfriCourts, 4th Floor · Plot 107 Buganda Road · Nakasero, Kampala
+              AfriCourts, 4th Floor · Plot 107 Buganda Road · Kampala
             </p>
           </div>
         </section>

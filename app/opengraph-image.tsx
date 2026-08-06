@@ -144,7 +144,7 @@ export default function OpenGraphImage() {
               color: 'rgba(245, 240, 232, 0.55)',
             }}
           >
-            AfriCourts · Buganda Road · Nakasero
+            AfriCourts · Buganda Road · Kampala
           </div>
           <div
             style={{

@@ -6,7 +6,7 @@ const baseUrl = siteConfig.url
 export const routes = [
   {
     path: '/',
-    title: `${siteConfig.name} | Corporate & Commercial Law Firm · Kampala`,
+    title: `${siteConfig.name} | Mineral Law & Corporate Counsel · Kampala`,
     description: siteConfig.description,
     changeFrequency: 'weekly' as const,
     priority: 1,
@@ -14,14 +14,14 @@ export const routes = [
   {
     path: '/about',
     title: `Our Firm | ${siteConfig.name}`,
-    description: `${siteConfig.name} is a corporate and commercial law firm at AfriCourts, Nakasero, Kampala. Partner-led counsel for businesses, investors, and institutions in Uganda since ${siteConfig.established}.`,
+    description: `${siteConfig.name} is a corporate and commercial law firm at AfriCourts in Kampala. Partner-led counsel for businesses, investors, and institutions in Uganda since ${siteConfig.established}.`,
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   },
   {
     path: '/services',
     title: `Practice Areas | ${siteConfig.name}`,
-    description: `Legal practice areas at ${siteConfig.name}: mineral law & precious metal trade, corporate law, M&A, banking & finance, intellectual property, commercial law, and employment law in Uganda.`,
+    description: `Mineral law and precious metal trade lawyers in Kampala, plus corporate, M&A, banking, IP, commercial, and employment counsel at ${siteConfig.name}. Gold trading, mining licences, and export compliance in Uganda.`,
     changeFrequency: 'monthly' as const,
     priority: 0.9,
   },
@@ -35,14 +35,14 @@ export const routes = [
   {
     path: '/team',
     title: `Our Lawyers | ${siteConfig.name}`,
-    description: `Meet the advocates and legal professionals at ${siteConfig.name}, AfriCourts, Nakasero, Kampala - partner-led commercial counsel for Uganda and East Africa.`,
+    description: `Meet the advocates and legal professionals at ${siteConfig.name}, AfriCourts, Kampala. Partner-led commercial counsel for Uganda and East Africa.`,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   },
   {
     path: '/contact',
     title: `Contact | ${siteConfig.name}`,
-    description: `Contact ${siteConfig.name} at AfriCourts, Plot 107 Buganda Road, Nakasero, Kampala. Phone, email, WhatsApp, and consultation requests for corporate and commercial legal matters.`,
+    description: `Contact ${siteConfig.name} at AfriCourts, Plot 107 Buganda Road, Kampala. Phone, email, WhatsApp, and consultation requests for corporate and commercial legal matters.`,
     changeFrequency: 'yearly' as const,
     priority: 0.8,
   },
@@ -167,9 +167,18 @@ export function organizationJsonLd() {
         })),
         knowsAbout: [
           ...practiceNames,
+          'Mineral law Uganda',
+          'Mining lawyer Kampala',
+          'Gold trading lawyer Uganda',
+          'Gold export compliance Uganda',
           'Gold mining compliance Uganda',
           'Precious metal trade Uganda',
+          'Mining licence Uganda',
+          'Mineral rights licensing Uganda',
+          'Gold dealer compliance Uganda',
+          'Extractives joint ventures Uganda',
           'Uganda Mining Act advisory',
+          'Chain of custody gold Uganda',
           'Corporate governance',
           'Commercial contracts',
           'Company registration Uganda',
@@ -299,6 +308,20 @@ export function getPracticeArea(slug: string) {
 export function practiceServiceJsonLd(
   area: (typeof practiceAreas)[number],
 ) {
+  const mineralBoost =
+    area.slug === 'mineral-law'
+      ? {
+          alternateName: [
+            'Mineral law Uganda',
+            'Gold trading legal counsel Uganda',
+            'Mining lawyer Kampala',
+            'Precious metal trade counsel',
+          ],
+          keywords:
+            'mineral law Uganda, mining lawyer Kampala, gold trading lawyer Uganda, gold export compliance, mining licence Uganda, precious metal trade',
+        }
+      : {}
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -306,6 +329,7 @@ export function practiceServiceJsonLd(
     description: area.description,
     url: `${baseUrl}/services/${area.slug}`,
     serviceType: area.title,
+    ...mineralBoost,
     provider: {
       '@type': 'LegalService',
       name: siteConfig.name,
@@ -390,11 +414,21 @@ export const firmFaqs = [
   },
   {
     question: 'How can I contact McFord Advocates?',
-    answer: `Call ${siteConfig.phones[0].display}, email ${siteConfig.email}, WhatsApp ${siteConfig.whatsapp.display}, or visit AfriCourts, Nakasero, Kampala during ${siteConfig.hours.weekdays}.`,
+    answer: `Call ${siteConfig.phones[0].display}, email ${siteConfig.email}, WhatsApp ${siteConfig.whatsapp.display}, or visit AfriCourts in Kampala during ${siteConfig.hours.weekdays}.`,
   },
   {
     question: 'Does McFord Advocates advise on mineral law and gold trading?',
     answer:
-      'Yes. Mineral Law & Precious Metal Trade is a core practice covering mining and mineral rights licensing, gold and precious metal trading compliance, export documentation, joint ventures, and related regulatory issues in Uganda.',
+      'Yes. Mineral Law & Precious Metal Trade is a core practice at McFord Advocates. We advise on mining and mineral rights licensing, gold and precious metal trading compliance, gold export documentation, dealer and exporter licensing support, joint ventures and farm-ins, chain-of-custody documentation, and related extractives regulation in Uganda. See https://mcfordadvocates.co.ug/services/mineral-law.',
+  },
+  {
+    question: 'Do you advise gold traders and exporters in Kampala?',
+    answer:
+      'Yes. We counsel gold traders, exporters, mining operators, and investors on licensing, export compliance, commercial contracts, and regulatory interfaces for precious metal trade in Uganda. Contact McFord Advocates at AfriCourts, Kampala.',
+  },
+  {
+    question: 'What mining licence issues do you handle in Uganda?',
+    answer:
+      'We support diligence and documentation on mining and mineral rights licensing, exploration and production agreements, transfers and farm-ins subject to regulatory consent, land access and community interfaces, and related commercial structures for extractive projects in Uganda.',
   },
 ] as const

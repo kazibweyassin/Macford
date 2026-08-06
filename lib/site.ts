@@ -5,10 +5,10 @@ export const siteConfig = {
   legalName: 'McFord Advocates',
   tagline: 'Clear counsel. Confident decisions.',
   description:
-    'McFord Advocates is a Kampala-based law firm specialising in mineral law and precious metal trade, corporate law, M&A, banking and finance, intellectual property, commercial law, and employment law.',
+    'McFord Advocates is a Kampala mineral law and corporate firm advising on gold and precious metal trade compliance, mining licences, export documentation, and commercial counsel for operators and investors in Uganda.',
   /** Longer summary for OG, schema, and LLM context */
   longDescription:
-    'McFord Advocates is a partner-led corporate and commercial law firm based at AfriCourts, Plot 107 Buganda Road, Nakasero, Kampala, Uganda. Established in 2015, the firm advises companies, investors, mining operators, and institutions on mineral law and precious metal trade, corporate law, mergers and acquisitions, banking and finance, intellectual property, commercial law, and employment law across Uganda and East Africa.',
+    'McFord Advocates is a partner-led law firm at AfriCourts, Plot 107 Buganda Road, Nakasero, Kampala, Uganda. Established in 2015, the firm specialises in mineral law and precious metal trade (including gold trading, mining and mineral rights licensing, export compliance, and extractives joint ventures), alongside corporate law, mergers and acquisitions, banking and finance, intellectual property, commercial law, and employment law across Uganda and East Africa.',
   /**
    * Official site only. mcfordadvocates.com was compromised / no longer controlled
    * by the firm - do not list it as sameAs or an alternate official URL.
@@ -73,23 +73,29 @@ export const siteConfig = {
     linkedin: 'https://www.linkedin.com/company/mcford-advocates',
   },
 
-  /** Primary SEO keywords (also used in schema knowsAbout) */
+  /** Primary SEO keywords (also used in schema knowsAbout) - mineral/gold weighted first */
   keywords: [
     'McFord Advocates',
-    'law firm Kampala',
     'mineral law Uganda',
-    'precious metal trade Uganda',
-    'gold trading legal counsel Uganda',
     'mining lawyer Kampala',
+    'gold trading lawyer Uganda',
+    'gold export compliance Uganda',
+    'precious metal trade Uganda',
+    'mining licence Uganda lawyer',
+    'mineral rights licensing Uganda',
+    'gold dealer compliance Uganda',
+    'extractives lawyer Kampala',
+    'ASM gold legal counsel Uganda',
+    'precious metals export Uganda legal',
+    'mining joint venture lawyer Uganda',
+    'law firm Kampala',
     'corporate lawyers Uganda',
     'commercial law firm Uganda',
     'mergers and acquisitions Uganda',
     'banking and finance lawyers Uganda',
-    'intellectual property Uganda',
-    'employment law Uganda',
     'advocates Nakasero',
     'AfriCourts Buganda Road',
-    'East Africa corporate counsel',
+    'East Africa mining counsel',
   ] as string[],
 
   areaServed: ['Uganda', 'East Africa', 'Kampala'] as string[],
@@ -109,16 +115,18 @@ export const practiceAreas = [
     slug: 'mineral-law',
     title: 'Mineral Law & Precious Metal Trade',
     short:
-      'Mining licences, gold and precious metal trade, export compliance, and extractives regulation.',
+      'Mining licences, gold and precious metal trade, export compliance, and extractives regulation in Uganda.',
     description:
-      'Counsel for mining companies, traders, investors, and operators on mineral rights, licensing, and precious metal trade - including gold, a cornerstone of Uganda’s export economy.',
+      'Mineral law and precious metal trade counsel for mining companies, gold traders, exporters, investors, and operators in Uganda. We advise on mining and mineral rights licensing, gold trading compliance, export documentation, responsible-sourcing expectations, exploration and production agreements, and extractives joint ventures, with a focus on gold as a cornerstone of Uganda’s export economy.',
     details: [
-      'Mining and mineral rights licensing',
+      'Mining and mineral rights licensing in Uganda',
       'Gold and precious metal trading compliance',
-      'Export documentation and regulatory filings',
+      'Gold export documentation and regulatory filings',
+      'Dealer, trader, and exporter licensing support',
       'Exploration and production agreements',
-      'Joint ventures and farm-in arrangements',
-      'Environmental, community, and local content compliance',
+      'Joint ventures, farm-ins, and offtake arrangements',
+      'Chain-of-custody and responsible-sourcing documentation',
+      'Environmental, community, land access, and local content',
     ],
   },
   {

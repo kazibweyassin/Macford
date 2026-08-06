@@ -12,7 +12,7 @@ import { breadcrumbJsonLd, buildPageMetadata, teamJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Our Lawyers',
-  description: `Meet the advocates and legal professionals at ${siteConfig.name}, AfriCourts, Nakasero, Kampala - partner-led commercial counsel for Uganda and East Africa.`,
+  description: `Meet the advocates and legal professionals at ${siteConfig.name}, AfriCourts, Kampala. Partner-led commercial counsel for Uganda and East Africa.`,
   path: '/team',
   keywords: [
     'McFord Advocates lawyers',
@@ -64,7 +64,7 @@ export default function Team() {
                     depth without unnecessary cost.
                   </p>
                   <p>
-                    Based at AfriCourts, Plot 107 Buganda Road, Nakasero. Reach us on{' '}
+                    Based at AfriCourts, Plot 107 Buganda Road, Kampala. Reach us on{' '}
                     <a
                       href={siteConfig.phones[0].href}
                       className="text-accent font-medium hover:text-primary transition-colors"
@@ -185,7 +185,7 @@ export default function Team() {
               Speak with our team
             </h2>
             <p className="text-primary-foreground/60 font-light mb-9 text-lg">
-              Email {siteConfig.email} or visit AfriCourts, Nakasero.
+              Email {siteConfig.email} or visit AfriCourts in Kampala.
             </p>
             <Link href="/contact" className="btn-primary">
               Contact us

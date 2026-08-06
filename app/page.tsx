@@ -36,12 +36,18 @@ import {
 
 export const metadata: Metadata = {
   ...buildPageMetadata({
-    title: 'Corporate & Commercial Law Firm · Kampala',
+    title: 'Mineral Law & Corporate Counsel · Kampala',
     description: siteConfig.description,
     path: '/',
+    keywords: [
+      ...siteConfig.keywords,
+      'gold lawyer Uganda',
+      'mining legal counsel Kampala',
+      'precious metal export lawyer',
+    ],
   }),
   title: {
-    absolute: `${siteConfig.name} | Corporate & Commercial Law Firm · Kampala`,
+    absolute: `${siteConfig.name} | Mineral Law & Corporate Counsel · Kampala, Uganda`,
   },
 }
 
@@ -106,7 +112,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-7 text-base sm:text-xl text-primary-foreground/90 max-w-xl leading-relaxed font-light drop-shadow-sm animate-fade-up delay-200">
-                Partner-led corporate counsel in Nakasero - including mineral law
+                Partner-led corporate counsel from Kampala, covering mineral law
                 and precious metal trade, transactions, and day-to-day commercial
                 advice for businesses across Uganda.
               </p>
@@ -142,7 +148,7 @@ export default function Home() {
               {[
                 { label: 'Established', value: String(siteConfig.established) },
                 { label: 'Practice areas', value: String(practiceAreas.length) },
-                { label: 'Chambers', value: 'Nakasero' },
+                { label: 'Chambers', value: 'Kampala' },
                 { label: 'Service model', value: 'Partner-led' },
               ].map((item) => (
                 <div
@@ -238,7 +244,7 @@ export default function Home() {
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <p className="eyebrow text-accent mb-1">Chambers</p>
                     <p className="font-display text-xl text-primary-foreground">
-                      AfriCourts · Nakasero
+                      AfriCourts, Kampala
                     </p>
                   </div>
                 </div>
@@ -252,11 +258,11 @@ export default function Home() {
                 />
                 <div className="mt-6 space-y-4 text-muted-foreground font-light leading-relaxed text-[15px] sm:text-base">
                   <p>
-                    From our chambers at AfriCourts on Buganda Road, we advise
-                    companies, mining operators, financial institutions, investors,
-                    and entrepreneurs - with particular depth in mineral law and
-                    precious metal trade, alongside corporate, banking, IP, and
-                    employment counsel.
+                    From our chambers at AfriCourts on Buganda Road in Kampala, we
+                    advise companies, mining operators, financial institutions,
+                    investors, and entrepreneurs, with particular depth in mineral
+                    law and precious metal trade, alongside corporate, banking, IP,
+                    and employment counsel.
                   </p>
                   <p>
                     Clients instruct McFord for partner-led attention, practical

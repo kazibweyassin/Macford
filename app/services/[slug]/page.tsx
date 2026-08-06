@@ -41,10 +41,22 @@ const practiceKeywords: Record<string, string[]> = {
   'mineral-law': [
     'mineral law Uganda',
     'mining lawyer Kampala',
+    'mining lawyer Uganda',
+    'gold trading lawyer Uganda',
     'gold mining legal counsel Uganda',
     'precious metal trade Uganda',
     'gold export compliance Uganda',
+    'gold export lawyer Uganda',
     'mining licence Uganda',
+    'mining licence lawyer Uganda',
+    'mineral rights licensing Uganda',
+    'gold dealer compliance Uganda',
+    'precious metals lawyer Kampala',
+    'extractives lawyer Uganda',
+    'ASM gold compliance Uganda',
+    'gold trading licence Uganda legal',
+    'chain of custody gold Uganda',
+    'mining joint venture lawyer Uganda',
   ],
   'corporate-law': [
     'corporate lawyer Kampala',
@@ -91,16 +103,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const area = getPracticeArea(slug)
   if (!area) return {}
 
+  const isMineral = area.slug === 'mineral-law'
+  const title = isMineral
+    ? 'Mineral Law & Gold Trading Lawyers Uganda | Kampala'
+    : `${area.title} Lawyers Uganda`
+  const description = isMineral
+    ? `Mineral law and precious metal trade lawyers in Kampala. McFord Advocates advises on mining licences, gold trading compliance, gold export documentation, mineral rights, and extractives joint ventures in Uganda.`
+    : `${area.description} Instruct ${siteConfig.name} in Kampala for ${area.title.toLowerCase()} matters.`
+
   return buildPageMetadata({
-    title: `${area.title} Lawyers Uganda`,
-    description: `${area.description} Instruct ${siteConfig.name} in Kampala for ${area.title.toLowerCase()} matters.`,
+    title,
+    description,
     path: `/services/${area.slug}`,
     keywords: [
       area.title,
       `${area.title} Uganda`,
       `${area.title} Kampala`,
       ...(practiceKeywords[area.slug] ?? []),
-      ...siteConfig.keywords.slice(0, 6),
+      ...(isMineral
+        ? siteConfig.keywords
+        : siteConfig.keywords.slice(0, 8)),
     ],
   })
 }
@@ -111,6 +133,7 @@ export default async function PracticeAreaPage({ params }: PageProps) {
   if (!area) notFound()
 
   const Icon = iconMap[area.slug] ?? Briefcase
+  const isMineral = area.slug === 'mineral-law'
   const related = practiceAreas
     .filter((p) => p.slug !== area.slug)
     .slice(0, 3)
@@ -130,11 +153,19 @@ export default async function PracticeAreaPage({ params }: PageProps) {
       <Navbar />
       <main>
         <PageHero
-          eyebrow="Practice Area"
+          eyebrow={isMineral ? 'Core Practice · Mineral & Metals' : 'Practice Area'}
           title={area.title}
           description={area.description}
-          image="https://images.unsplash.com/photo-1619771766980-368d32e44b82?auto=format&fit=crop&w=1920&q=80"
-          imageAlt={`${area.title} legal counsel at ${siteConfig.name}`}
+          image={
+            isMineral
+              ? 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=1920&q=80'
+              : 'https://images.unsplash.com/photo-1619771766980-368d32e44b82?auto=format&fit=crop&w=1920&q=80'
+          }
+          imageAlt={
+            isMineral
+              ? 'Mineral law and gold precious metal trade counsel in Uganda - McFord Advocates Kampala'
+              : `${area.title} legal counsel at ${siteConfig.name}`
+          }
           crumbs={[
             { label: 'Home', href: '/' },
             { label: 'Practice Areas', href: '/services' },
@@ -150,19 +181,43 @@ export default async function PracticeAreaPage({ params }: PageProps) {
                   <Icon className="h-6 w-6 text-accent" strokeWidth={1.5} />
                 </div>
                 <h2 className="font-display text-3xl sm:text-4xl text-foreground mb-5">
-                  How we advise on {area.title.toLowerCase()}
+                  {isMineral
+                    ? 'Mining, gold trading, and precious metal counsel in Uganda'
+                    : `How we advise on ${area.title.toLowerCase()}`}
                 </h2>
                 <p className="text-muted-foreground font-light leading-relaxed text-base sm:text-lg mb-6">
                   {area.description} Clients instruct {siteConfig.name} for
                   partner-led attention, practical drafting, and clear
-                  commercial judgment from our chambers at AfriCourts, Nakasero,
+                  commercial judgment from our chambers at AfriCourts in
                   Kampala.
                 </p>
-                <p className="text-muted-foreground font-light leading-relaxed mb-10">
-                  Whether you need transactional support, regulatory guidance,
-                  or dispute strategy, we frame advice around risk, timeline,
-                  and outcomes - so decision-makers can act with confidence.
-                </p>
+                {isMineral ? (
+                  <div className="space-y-4 text-muted-foreground font-light leading-relaxed mb-10">
+                    <p>
+                      Operators, gold traders, exporters, and investors in
+                      Uganda face layered licensing, export documentation, and
+                      commercial contracting requirements. We help clients map
+                      who holds which rights, align trade contracts with
+                      regulatory reality, and plan export and banking
+                      counterparties before shipments move.
+                    </p>
+                    <p>
+                      Typical instructions include mining and mineral rights
+                      licensing support, gold dealer and trading compliance,
+                      export filings, joint ventures and farm-ins, and
+                      documentation that supports responsible-sourcing and
+                      chain-of-custody expectations. We frame advice around
+                      risk, timeline, and commercial outcomes so decision-makers
+                      can act with confidence.
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-muted-foreground font-light leading-relaxed mb-10">
+                    Whether you need transactional support, regulatory guidance,
+                    or dispute strategy, we frame advice around risk, timeline,
+                    and outcomes so decision-makers can act with confidence.
+                  </p>
+                )}
 
                 <h3 className="font-display text-2xl text-foreground mb-5">
                   What this practice covers

@@ -23,7 +23,7 @@ const body = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Corporate & Commercial Law Firm · Kampala`,
+    default: `${siteConfig.name} | Mineral Law & Corporate Counsel · Kampala`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.webmanifest',
   openGraph: {
-    title: `${siteConfig.name} | Corporate Law Firm Uganda`,
+    title: `${siteConfig.name} | Mineral Law & Gold Trade Counsel Uganda`,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
@@ -60,13 +60,13 @@ export const metadata: Metadata = {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} - corporate and commercial law firm, Kampala`,
+        alt: `${siteConfig.name} - mineral law and corporate counsel, Kampala`,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${siteConfig.name} | Corporate Law Firm Uganda`,
+    title: `${siteConfig.name} | Mineral Law & Gold Trade Counsel Uganda`,
     description: siteConfig.description,
     images: ['/twitter-image'],
   },

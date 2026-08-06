@@ -25,10 +25,12 @@ export const metadata: Metadata = buildPageMetadata({
   path: '/insights',
   keywords: [
     'legal insights Uganda',
-    'law firm insights Kampala',
     'mineral law updates Uganda',
+    'gold trading compliance Uganda guide',
+    'mining licence Uganda insight',
+    'law firm insights Kampala',
     'corporate law guide Uganda',
-    ...siteConfig.keywords.slice(0, 6),
+    ...siteConfig.keywords.slice(0, 10),
   ],
 })
 

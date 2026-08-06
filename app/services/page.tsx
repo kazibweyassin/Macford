@@ -24,16 +24,17 @@ import {
 } from '@/lib/seo'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Practice Areas',
-  description: `Legal practice areas at ${siteConfig.name}: mineral law & precious metal trade, corporate law, M&A, banking & finance, intellectual property, commercial law, and employment law in Uganda.`,
+  title: 'Practice Areas | Mineral Law & Gold Trade Counsel',
+  description: `Mineral law and gold trading lawyers in Kampala at ${siteConfig.name}, plus corporate, M&A, banking, IP, commercial, and employment counsel across Uganda.`,
   path: '/services',
   keywords: [
     'practice areas',
     'mineral law Uganda',
     'gold trading legal counsel Uganda',
+    'mining licence lawyer Uganda',
+    'gold export compliance Uganda',
     'corporate lawyers Kampala',
     'M&A lawyers Uganda',
-    'commercial law firm Uganda',
     ...siteConfig.keywords,
   ],
 })
@@ -64,7 +65,7 @@ export default function Services() {
         <PageHero
           eyebrow="Practice Areas"
           title="Legal services for business"
-          description="Seven practice areas for business - led by mineral law and precious metal trade, with full corporate, M&A, banking, IP, commercial, and employment capability from our Kampala chambers."
+          description="Led by mineral law and precious metal trade (including gold trading and mining licences in Uganda), with full corporate, M&A, banking, IP, commercial, and employment capability from our Kampala chambers."
           image="https://images.unsplash.com/photo-1619771766980-368d32e44b82?auto=format&fit=crop&w=1920&q=80"
           imageAlt="Professional legal counsel and business advisory"
           crumbs={[
