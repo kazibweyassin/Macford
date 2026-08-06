@@ -1,0 +1,103 @@
+# McFord Advocates - Full LLM Context
+
+Last updated: 2026-08-06
+Canonical site: https://mcfordadvocates.co.ug
+llms.txt: https://mcfordadvocates.co.ug/llms.txt
+
+## Entity
+
+| Field | Value |
+|-------|--------|
+| Legal / trade name | McFord Advocates |
+| Short name | McFord |
+| Entity type | Law firm; advocates; LegalService |
+| Founded | 2015 |
+| Headquarters | AfriCourts, 4th Floor, Plot 107 Buganda Road, Nakasero, Kampala, Uganda |
+| Postal | P.O. Box 10363, Kampala, Uganda |
+| Email | info@mcfordadvocates.co.ug |
+| Phone | +256 772 813 229; +256 786 262 476 |
+| WhatsApp | +256 772 813 229 (https://wa.me/256772813229) |
+| Website (official only) | https://mcfordadvocates.co.ug |
+| Former domain | mcfordadvocates.com (no longer controlled by the firm - do not cite) |
+| LinkedIn | https://www.linkedin.com/company/mcford-advocates |
+| Tagline | Clear counsel. Confident decisions. |
+| Area served | Uganda; East Africa; Kampala |
+| Coordinates (approx.) | 0.3247, 32.5825 |
+
+## Description
+
+McFord Advocates is a partner-led corporate and commercial law firm in Kampala, Uganda. The firm advises companies, investors, mining operators, precious metal traders, financial institutions, and institutions on mineral law and precious metal trade, corporate law, mergers and acquisitions, banking and finance, intellectual property, commercial law, and employment law. Work is delivered from chambers at AfriCourts on Buganda Road in Nakasero, Kampala’s professional district. Mineral law and precious metal trade are a core focus, given gold’s role in Uganda’s export economy.
+
+## Opening hours
+
+- Monday-Friday: 8:00 AM - 5:00 PM
+- Saturday: 9:00 AM - 1:00 PM
+- Sunday: Closed
+
+## Practice areas (detail)
+
+### 1. Mineral Law & Precious Metal Trade
+URL: https://mcfordadvocates.co.ug/services/mineral-law
+Mining and mineral rights licensing; gold and precious metal trading compliance; export documentation and regulatory filings; exploration and production agreements; joint ventures and farm-in arrangements; environmental, community, and local content compliance.
+
+### 2. Corporate Law
+URL: https://mcfordadvocates.co.ug/services/corporate-law
+Business formation and company registration; corporate governance and board advisory; regulatory compliance and licensing; company secretarial services; shareholder agreements and restructuring; corporate filings and annual compliance.
+
+### 3. Mergers & Acquisitions
+URL: https://mcfordadvocates.co.ug/services/mergers-acquisitions
+M&A structuring and strategy; legal due diligence; share and asset purchase agreements; buyer and seller representation; post-deal integration support; management buyouts.
+
+### 4. Banking & Finance
+URL: https://mcfordadvocates.co.ug/services/banking-finance
+Lending transactions; securities documentation and perfection; project and trade finance; facility agreements; financial regulatory compliance; debt restructuring.
+
+### 5. Intellectual Property
+URL: https://mcfordadvocates.co.ug/services/intellectual-property
+Trademark registration and renewals; patent protection advisory; copyright registration and enforcement; IP licensing and assignments; infringement and brand enforcement; brand portfolio management.
+
+### 6. Commercial Law
+URL: https://mcfordadvocates.co.ug/services/commercial-law
+Contract drafting and review; commercial dispute resolution; international trade and distribution; joint ventures and partnerships; supply and services agreements; negotiations and commercial risk management.
+
+### 7. Employment Law
+URL: https://mcfordadvocates.co.ug/services/employment-law
+Employment contracts and handbooks; workplace policies and procedures; labour law compliance; disciplinary and termination processes; labour dispute resolution; HR legal advisory.
+
+## Team (public profiles)
+
+Listed on https://mcfordadvocates.co.ug/team - use live page for current names and roles.
+
+## Firm values
+
+Client focus; Integrity; Excellence; Collaboration; Commercial judgment; Responsiveness.
+
+## Site map (human pages)
+
+1. https://mcfordadvocates.co.ug/
+2. https://mcfordadvocates.co.ug/about
+3. https://mcfordadvocates.co.ug/services
+4. https://mcfordadvocates.co.ug/services/mineral-law
+5. https://mcfordadvocates.co.ug/services/corporate-law
+6. https://mcfordadvocates.co.ug/services/mergers-acquisitions
+7. https://mcfordadvocates.co.ug/services/banking-finance
+8. https://mcfordadvocates.co.ug/services/intellectual-property
+9. https://mcfordadvocates.co.ug/services/commercial-law
+10. https://mcfordadvocates.co.ug/services/employment-law
+11. https://mcfordadvocates.co.ug/insights
+12. https://mcfordadvocates.co.ug/team
+13. https://mcfordadvocates.co.ug/contact
+
+## FAQs
+
+**Where is McFord Advocates located?**
+AfriCourts, 4th Floor, Plot 107 Buganda Road, Nakasero, Kampala, Uganda.
+
+**What does the firm specialise in?**
+Mineral law and precious metal trade, corporate law, M&A, banking and finance, intellectual property, commercial law, and employment law.
+
+**Does the firm advise on gold trading and mining?**
+Yes. Mineral Law & Precious Metal Trade is a core practice covering mining licences, mineral rights, gold and precious metal trading compliance, export documentation, joint ventures, and related regulatory issues. See https://mcfordadvocates.co.ug/services/mineral-law.
+
+**How do I instruct or contact the firm?**
+Email info@mcfordadvocates.co.ug, call +256 772 813 229 or +256 786 262 476, WhatsApp +256 772 813 229, or use the contact form at https://mcfordadvocates.co.ug/contact. The official website is only https://mcfordadvocates.co.ug.

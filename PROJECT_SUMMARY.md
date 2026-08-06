@@ -16,7 +16,7 @@ A fully-functional, professional website for **McFord Advocates**, Uganda's lead
   - Hero section with value proposition
   - Trust badge ("Trusted Legal Partner")
   - Firm statistics (10+ years, 500+ clients, 20+ experts, 98% satisfaction)
-  - Service area preview cards (4 practice areas)
+  - Service area preview cards (featured from 9 practice areas)
   - "Why Choose Us" section with 6 key differentiators
   - Final CTA section with blue background
 
@@ -25,21 +25,23 @@ A fully-functional, professional website for **McFord Advocates**, Uganda's lead
 - **Key Sections**:
   - Company story (established 2015)
   - Mission, Vision, and Values (3 separate cards)
-  - Detailed expertise areas (6 categories with sub-items)
+  - Detailed expertise areas (full practice list)
   - Key achievements and milestones
 
 #### 3. **Services Page** (`/services`)
 - **Purpose**: Detailed explanation of legal offerings
 - **Key Sections**:
-  - 6 practice area cards with full descriptions:
-    - Corporate Law
+  - 9 practice area cards with full descriptions + detail routes (`/services/[slug]`):
+    - Corporate & Commercial
     - Mergers & Acquisitions
     - Banking & Finance
+    - Dispute Resolution
+    - Mineral Law
     - Intellectual Property
-    - Commercial Law
-    - Employment Law
-  - "Why Choose Our Services" section (6 reasons)
-  - 4-step process visualization
+    - Employment & Labour
+    - Real Estate & Property
+    - Energy & Infrastructure
+  - "Why Choose Our Services" section
   - Service inquiry CTA
 
 #### 4. **Team Page** (`/team`)
@@ -194,18 +196,20 @@ mcford-advocates/
 
 ## 📊 Content Structure
 
-### Services Offered (Based on Research)
-1. **Corporate Law** - Business formation, governance, compliance
-2. **Mergers & Acquisitions** - M&A advisory, due diligence
-3. **Banking & Finance** - Lending, securities, finance advisory
-4. **Intellectual Property** - Trademarks, patents, copyrights
-5. **Commercial Law** - Contracts, disputes, trade
-6. **Employment Law** - Employment contracts, labor compliance
+### Practice Areas (from `lib/site.ts`)
+1. **Corporate & Commercial** - formation, governance, contracts, compliance
+2. **Mergers & Acquisitions** - structuring, due diligence, execution
+3. **Banking & Finance** - lending, security, project & trade finance
+4. **Dispute Resolution** - litigation, arbitration, debt recovery
+5. **Mineral Law** - mining licences, gold trading/export compliance
+6. **Intellectual Property** - trademarks, patents, copyrights, enforcement
+7. **Employment & Labour** - contracts, policies, labour disputes
+8. **Real Estate & Property** - conveyancing, leases, title due diligence
+9. **Energy & Infrastructure** - oil & gas, power, project support
 
-### Team Profiles (8 Professionals)
-- Founder & Senior Partner (15+ years)
-- 3 Partners with specializations
-- 4 Associates supporting various practice areas
+### Team Profiles
+- Public profiles on `/team` (see `teamMembers` in `lib/site.ts`)
+- Roles include Managing Partner, Advocate, and Legal Associate
 
 ---
 
@@ -236,7 +240,7 @@ mcford-advocates/
 
 **McFord Advocates**
 - 📍 Address: Kampala, Uganda
-- 📧 Email: info@mcfordadvocates.com
+- 📧 Email: info@mcfordadvocates.co.ug
 - 📱 Phone: +256 (0) 773 000 000
 - ⏰ Hours: Mon-Fri 8AM-5PM, Sat 9AM-1PM
 

@@ -2,18 +2,34 @@
 export const siteConfig = {
   name: 'McFord Advocates',
   shortName: 'McFord',
+  legalName: 'McFord Advocates',
   tagline: 'Clear counsel. Confident decisions.',
   description:
-    'McFord Advocates is a corporate and commercial law firm in Kampala, Uganda. We advise companies, investors, and institutions on transactions, regulation, disputes, and the protection of commercial value.',
-  url: 'https://mcfordadvocates.com',
+    'McFord Advocates is a Kampala-based law firm specialising in mineral law and precious metal trade, corporate law, M&A, banking and finance, intellectual property, commercial law, and employment law.',
+  /** Longer summary for OG, schema, and LLM context */
+  longDescription:
+    'McFord Advocates is a partner-led corporate and commercial law firm based at AfriCourts, Plot 107 Buganda Road, Nakasero, Kampala, Uganda. Established in 2015, the firm advises companies, investors, mining operators, and institutions on mineral law and precious metal trade, corporate law, mergers and acquisitions, banking and finance, intellectual property, commercial law, and employment law across Uganda and East Africa.',
+  /**
+   * Official site only. mcfordadvocates.com was compromised / no longer controlled
+   * by the firm - do not list it as sameAs or an alternate official URL.
+   * Redirects from .com require control of that domain (DNS); this app cannot force them.
+   */
+  url: 'https://mcfordadvocates.co.ug',
+  /** Display host (no protocol) for OG images and copy */
+  domain: 'mcfordadvocates.co.ug',
+  /** Former domain name only - for notices, not for linking as official */
+  formerDomain: 'mcfordadvocates.com',
   established: 2015,
+  foundingDate: '2015',
 
   address: {
     building: 'AfriCourts, 4th Floor',
     street: 'Plot 107, Buganda Road',
     area: 'Nakasero',
     city: 'Kampala',
+    region: 'Central Region',
     country: 'Uganda',
+    countryCode: 'UG',
     postal: 'P.O. Box 10363, Kampala, Uganda',
     /** Full multi-line display */
     lines: [
@@ -27,6 +43,11 @@ export const siteConfig = {
       'https://www.google.com/maps/search/?api=1&query=AfriCourts+Plot+107+Buganda+Road+Nakasero+Kampala+Uganda',
     mapsEmbed:
       'https://maps.google.com/maps?q=Plot+107+Buganda+Road+Nakasero+Kampala+Uganda&t=&z=16&ie=UTF8&iwloc=&output=embed',
+    /** Approximate coordinates for LocalBusiness / geo meta (Nakasero, Kampala) */
+    geo: {
+      latitude: 0.3247,
+      longitude: 32.5825,
+    },
   },
 
   phones: [
@@ -34,8 +55,8 @@ export const siteConfig = {
     { label: 'Secondary', display: '+256 786 262 476', href: 'tel:+256786262476' },
   ],
 
-  email: 'info@mcfordadvocates.com',
-  emailHref: 'mailto:info@mcfordadvocates.com',
+  email: 'info@mcfordadvocates.co.ug',
+  emailHref: 'mailto:info@mcfordadvocates.co.ug',
 
   whatsapp: {
     display: '+256 772 813 229',
@@ -52,10 +73,32 @@ export const siteConfig = {
     linkedin: 'https://www.linkedin.com/company/mcford-advocates',
   },
 
+  /** Primary SEO keywords (also used in schema knowsAbout) */
+  keywords: [
+    'McFord Advocates',
+    'law firm Kampala',
+    'mineral law Uganda',
+    'precious metal trade Uganda',
+    'gold trading legal counsel Uganda',
+    'mining lawyer Kampala',
+    'corporate lawyers Uganda',
+    'commercial law firm Uganda',
+    'mergers and acquisitions Uganda',
+    'banking and finance lawyers Uganda',
+    'intellectual property Uganda',
+    'employment law Uganda',
+    'advocates Nakasero',
+    'AfriCourts Buganda Road',
+    'East Africa corporate counsel',
+  ] as string[],
+
+  areaServed: ['Uganda', 'East Africa', 'Kampala'] as string[],
+
   nav: [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'Our Firm' },
     { href: '/services', label: 'Practice Areas' },
+    { href: '/insights', label: 'Insights' },
     { href: '/team', label: 'Our Lawyers' },
     { href: '/contact', label: 'Contact' },
   ],
@@ -63,18 +106,34 @@ export const siteConfig = {
 
 export const practiceAreas = [
   {
-    slug: 'corporate-commercial',
-    title: 'Corporate & Commercial',
-    short: 'Formation, governance, contracts, and regulatory compliance for growing businesses.',
+    slug: 'mineral-law',
+    title: 'Mineral Law & Precious Metal Trade',
+    short:
+      'Mining licences, gold and precious metal trade, export compliance, and extractives regulation.',
     description:
-      'End-to-end corporate counsel for companies in Uganda and across East Africa, from incorporation and governance to day-to-day commercial contracting.',
+      'Counsel for mining companies, traders, investors, and operators on mineral rights, licensing, and precious metal trade - including gold, a cornerstone of Uganda’s export economy.',
     details: [
-      'Company registration and formation',
-      'Corporate governance & board advisory',
-      'Commercial contracts and joint ventures',
+      'Mining and mineral rights licensing',
+      'Gold and precious metal trading compliance',
+      'Export documentation and regulatory filings',
+      'Exploration and production agreements',
+      'Joint ventures and farm-in arrangements',
+      'Environmental, community, and local content compliance',
+    ],
+  },
+  {
+    slug: 'corporate-law',
+    title: 'Corporate Law',
+    short: 'Business formation, governance, and regulatory compliance for companies.',
+    description:
+      'End-to-end corporate counsel for businesses in Uganda and across East Africa - from company formation and governance to ongoing compliance and restructuring.',
+    details: [
+      'Business formation and company registration',
+      'Corporate governance and board advisory',
       'Regulatory compliance and licensing',
       'Company secretarial services',
-      'Shareholder agreements & restructuring',
+      'Shareholder agreements and restructuring',
+      'Corporate filings and annual compliance',
     ],
   },
   {
@@ -82,9 +141,9 @@ export const practiceAreas = [
     title: 'Mergers & Acquisitions',
     short: 'Structuring, due diligence, and execution of acquisitions and disposals.',
     description:
-      'Practical, commercially minded advice on acquisitions, disposals, and reorganisations for local and cross-border investors.',
+      'Practical, commercially minded advice on mergers, acquisitions, disposals, and reorganisations for local and cross-border investors.',
     details: [
-      'Transaction structuring and strategy',
+      'M&A structuring and strategy',
       'Legal due diligence',
       'Share and asset purchase agreements',
       'Buyer and seller representation',
@@ -95,91 +154,61 @@ export const practiceAreas = [
   {
     slug: 'banking-finance',
     title: 'Banking & Finance',
-    short: 'Lending, security packages, and financial regulatory advice for banks and borrowers.',
+    short: 'Lending transactions, securities documentation, and project finance.',
     description:
-      'We support banks, lenders, borrowers, and funds on financing structures, security perfection, and financial services regulation in Uganda.',
+      'We support banks, lenders, borrowers, and funds on financing structures, security packages, and financial services regulation in Uganda.',
     details: [
-      'Secured and unsecured lending',
-      'Security documentation & perfection',
+      'Lending transactions',
+      'Securities documentation and perfection',
       'Project and trade finance',
+      'Facility agreements',
       'Financial regulatory compliance',
       'Debt restructuring',
-      'Facility agreements',
-    ],
-  },
-  {
-    slug: 'dispute-resolution',
-    title: 'Dispute Resolution',
-    short: 'Litigation, arbitration, and commercial dispute strategy.',
-    description:
-      'Clear-eyed advocacy and strategic resolution of commercial, corporate, and civil disputes before courts and arbitral tribunals.',
-    details: [
-      'Commercial and civil litigation',
-      'Arbitration and mediation',
-      'Debt recovery',
-      'Injunctions and interim relief',
-      'Contractual and shareholder disputes',
-      'Enforcement of judgments & awards',
     ],
   },
   {
     slug: 'intellectual-property',
     title: 'Intellectual Property',
-    short: 'Trademarks, copyrights, patents, and brand enforcement.',
+    short: 'Trademark registration, patent protection, and copyright enforcement.',
     description:
-      'Protect and commercialise your brand and innovations through registration, licensing, and enforcement of IP rights in Uganda.',
+      'Protect and commercialise your brand and innovations through registration, licensing, and enforcement of intellectual property rights in Uganda.',
     details: [
       'Trademark registration and renewals',
-      'Copyright and patent advisory',
+      'Patent protection advisory',
+      'Copyright registration and enforcement',
       'IP licensing and assignments',
-      'Infringement and enforcement',
+      'Infringement and brand enforcement',
       'Brand portfolio management',
-      'Technology and software licensing',
     ],
   },
   {
-    slug: 'employment',
-    title: 'Employment & Labour',
-    short: 'Workplace contracts, policies, and labour disputes.',
+    slug: 'commercial-law',
+    title: 'Commercial Law',
+    short: 'Contract drafting, dispute resolution, and international trade support.',
     description:
-      'Employment counsel for employers and executives - contracts, policies, terminations, and dispute resolution under Ugandan labour law.',
+      'Day-to-day commercial counsel for businesses - contracts, trade arrangements, and strategic resolution of commercial disputes.',
+    details: [
+      'Contract drafting and review',
+      'Commercial dispute resolution',
+      'International trade and distribution',
+      'Joint ventures and partnerships',
+      'Supply and services agreements',
+      'Negotiations and commercial risk management',
+    ],
+  },
+  {
+    slug: 'employment-law',
+    title: 'Employment Law',
+    short: 'Employment contracts, workplace policies, and labour compliance.',
+    description:
+      'Employment counsel for employers and executives - contracts, workplace policies, terminations, and labour compliance under Ugandan law.',
     details: [
       'Employment contracts and handbooks',
-      'Workplace policies and compliance',
+      'Workplace policies and procedures',
+      'Labour law compliance',
       'Disciplinary and termination processes',
       'Labour dispute resolution',
-      'Work permits coordination',
       'HR legal advisory',
-    ],
-  },
-  {
-    slug: 'real-estate',
-    title: 'Real Estate & Property',
-    short: 'Conveyancing, leases, and property development advice.',
-    description:
-      'Property transactions, leasing, and development support for investors, developers, landlords, and corporate occupiers.',
-    details: [
-      'Land acquisition and conveyancing',
-      'Lease drafting and review',
-      'Title due diligence',
-      'Development and joint venture structures',
-      'Mortgages and charges',
-      'Property dispute resolution',
-    ],
-  },
-  {
-    slug: 'energy-infrastructure',
-    title: 'Energy & Infrastructure',
-    short: 'Oil & gas, power, and project support for infrastructure deals.',
-    description:
-      'Legal support for energy and infrastructure projects, including contracting, regulatory interfaces, and project documentation.',
-    details: [
-      'Project documentation review',
-      'Regulatory and licensing support',
-      'Joint venture and offtake arrangements',
-      'Construction and EPC contracts',
-      'Local content compliance',
-      'Stakeholder and land access issues',
     ],
   },
 ] as const
@@ -187,14 +216,24 @@ export const practiceAreas = [
 /** Anonymised, representative matters (ENS-style experience highlights) */
 export const selectedExperience = [
   {
+    headline: 'Gold export compliance',
+    sector: 'Mineral Law',
+    text: 'Advised a precious metal trader on licensing, export documentation, and regulatory compliance for gold trade out of Uganda.',
+  },
+  {
+    headline: 'Mining licence support',
+    sector: 'Mineral Law',
+    text: 'Supported an operator on mineral rights licensing, joint venture terms, and ongoing extractives compliance.',
+  },
+  {
     headline: 'Corporate restructure',
-    sector: 'Corporate',
+    sector: 'Corporate Law',
     text: 'Advised a Kampala trading group on group reorganisation, shareholder arrangements, and ongoing governance.',
   },
   {
-    headline: 'Commercial property',
-    sector: 'Real Estate',
-    text: 'Acted on acquisition and conveyancing of commercial premises in Nakasero for a regional investor.',
+    headline: 'Cross-border acquisition',
+    sector: 'Mergers & Acquisitions',
+    text: 'Supported a regional investor on due diligence and share purchase documentation for a Ugandan target.',
   },
   {
     headline: 'Facility documentation',
@@ -202,44 +241,9 @@ export const selectedExperience = [
     text: 'Supported lenders and borrowers on security documentation and perfection for mid-market facilities in Uganda.',
   },
   {
-    headline: 'Shareholder dispute',
-    sector: 'Dispute Resolution',
-    text: 'Represented a client in a commercial and shareholder dispute through negotiation and court process.',
-  },
-  {
     headline: 'Brand protection',
     sector: 'Intellectual Property',
     text: 'Advised on trademark filing strategy and enforcement for a consumer brand expanding in East Africa.',
-  },
-  {
-    headline: 'Employment exit',
-    sector: 'Employment',
-    text: 'Guided an employer through a senior exit, documentation, and risk management under Ugandan labour law.',
-  },
-] as const
-
-/** Homepage insights teaser (static until a full blog is added) */
-export const insights = [
-  {
-    date: '2026',
-    category: 'Corporate',
-    title: 'Getting company registration and annual compliance right in Uganda',
-    excerpt:
-      'Practical points for directors and founders on formation, filings, and staying compliant as the business grows.',
-  },
-  {
-    date: '2026',
-    category: 'Real Estate',
-    title: 'Title due diligence: what buyers should insist on before closing',
-    excerpt:
-      'Key checks on title, encumbrances, and land office processes that protect commercial property transactions.',
-  },
-  {
-    date: '2026',
-    category: 'Employment',
-    title: 'Employment contracts that reduce dispute risk',
-    excerpt:
-      'How clear contracts, policies, and process can prevent costly labour disputes for growing employers.',
   },
 ] as const
 

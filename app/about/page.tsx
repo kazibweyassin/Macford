@@ -1,19 +1,37 @@
+import type { Metadata } from 'next'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { PageHero } from '@/components/ui/page-hero'
 import { SectionHeader } from '@/components/ui/section-header'
+import { JsonLd } from '@/components/json-ld'
 import Link from 'next/link'
 import { Target, Eye, Heart, MapPin, ArrowRight, Building2, Scale, Users } from 'lucide-react'
 import { siteConfig, firmValues, practiceAreas } from '@/lib/site'
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo'
 
-export const metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Our Firm',
-  description: `About ${siteConfig.name} - corporate and commercial law at AfriCourts, Nakasero, Kampala.`,
-}
+  description: `${siteConfig.name} is a corporate and commercial law firm at AfriCourts, Nakasero, Kampala. Partner-led counsel for businesses, investors, and institutions in Uganda since ${siteConfig.established}.`,
+  path: '/about',
+  keywords: [
+    'about McFord Advocates',
+    'law firm Nakasero Kampala',
+    'corporate lawyers Uganda',
+    'AfriCourts advocates',
+    ...siteConfig.keywords.slice(0, 8),
+  ],
+})
 
 export default function About() {
   return (
     <>
+      <JsonLd
+        id="about-breadcrumb"
+        data={breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Our Firm', path: '/about' },
+        ])}
+      />
       <Navbar />
       <main>
         <PageHero
@@ -44,10 +62,11 @@ export default function About() {
                     excellence with practical, business-minded advice.
                   </p>
                   <p>
-                    We advise companies, entrepreneurs, financial institutions, and
-                    investors on corporate structuring, commercial transactions,
-                    banking and finance, employment, intellectual property, and
-                    dispute resolution.
+                    We advise companies, mining operators, entrepreneurs, financial
+                    institutions, and investors - with a core focus on mineral law
+                    and precious metal trade, alongside corporate law, mergers and
+                    acquisitions, banking and finance, intellectual property,
+                    commercial law, and employment law.
                   </p>
                   <p>
                     Our chambers are at{' '}
@@ -71,7 +90,7 @@ export default function About() {
               <div className="lg:col-span-6 grid grid-cols-2 gap-3">
                 {[
                   { icon: Building2, label: 'Location', value: 'Nakasero, Kampala' },
-                  { icon: Scale, label: 'Focus', value: 'Corporate & commercial' },
+                  { icon: Scale, label: 'Focus', value: 'Mineral · Corporate · Commercial' },
                   { icon: Users, label: 'Approach', value: 'Partner-led service' },
                   { icon: Heart, label: 'Promise', value: 'Integrity & clarity' },
                 ].map((item) => {
@@ -109,7 +128,7 @@ export default function About() {
                 {
                   icon: Eye,
                   title: 'Vision',
-                  text: 'To be the firm clients trust first for corporate and commercial matters in Uganda - known for excellence, integrity, and results.',
+                  text: 'To be the firm clients trust first for corporate, commercial, and mineral-sector matters in Uganda - known for excellence, integrity, and results.',
                 },
                 {
                   icon: Heart,
@@ -119,7 +138,7 @@ export default function About() {
               ].map((item) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.title} className="p-8 border border-border bg-card">
+                  <div key={item.title} className="card-quiet p-8 border border-border bg-card">
                     <Icon className="h-6 w-6 text-accent mb-5" strokeWidth={1.5} />
                     <h3 className="font-display text-2xl text-foreground mb-3">
                       {item.title}
@@ -133,7 +152,8 @@ export default function About() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {firmValues.map((v) => (
-                <div key={v.title} className="p-6 border border-border bg-card">
+                <div key={v.title} className="card-quiet p-6 border border-border bg-card">
+                  <div className="h-0.5 w-6 bg-accent/50 mb-4" />
                   <h4 className="font-display text-lg text-foreground mb-2">{v.title}</h4>
                   <p className="text-sm text-muted-foreground font-light leading-relaxed">
                     {v.description}
@@ -160,14 +180,50 @@ export default function About() {
               }
             />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {practiceAreas.map((area) => (
-                <div key={area.slug} className="p-7 border border-border bg-secondary/50">
-                  <h3 className="font-display text-xl text-foreground mb-4">{area.title}</h3>
+              {practiceAreas.map((area, index) => (
+                <div
+                  key={area.slug}
+                  className={`card-quiet p-7 border ${
+                    area.slug === 'mineral-law'
+                      ? 'border-accent/35 bg-ink text-primary-foreground md:col-span-2'
+                      : 'border-border bg-secondary/50'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <h3
+                      className={`font-display text-xl ${
+                        area.slug === 'mineral-law' ? 'text-primary-foreground' : 'text-foreground'
+                      }`}
+                    >
+                      <Link
+                        href={`/services/${area.slug}`}
+                        className="hover:text-accent transition-colors"
+                      >
+                        {area.title}
+                      </Link>
+                    </h3>
+                    <span
+                      className={`font-display text-lg ${
+                        area.slug === 'mineral-law' ? 'text-accent/40' : 'text-accent/20'
+                      }`}
+                    >
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  {area.slug === 'mineral-law' && (
+                    <p className="text-sm text-primary-foreground/65 font-light mb-4 max-w-2xl">
+                      {area.short}
+                    </p>
+                  )}
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {area.details.slice(0, 4).map((item) => (
                       <li
                         key={item}
-                        className="flex gap-2 items-start text-sm text-muted-foreground font-light"
+                        className={`flex gap-2 items-start text-sm font-light ${
+                          area.slug === 'mineral-law'
+                            ? 'text-primary-foreground/60'
+                            : 'text-muted-foreground'
+                        }`}
                       >
                         <span className="mt-2 h-1 w-1 rounded-full bg-accent shrink-0" />
                         {item}
@@ -180,19 +236,22 @@ export default function About() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden hero-mesh grain py-20 text-primary-foreground">
+        <section className="relative overflow-hidden hero-mesh grain py-20 sm:py-24 text-primary-foreground">
           <div className="absolute top-0 left-0 right-0 rule-gold" />
+          <div className="absolute bottom-0 left-0 right-0 rule-gold" />
           <div className="container-page text-center max-w-3xl">
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="h-px w-7 bg-accent" />
+              <p className="eyebrow text-accent">Engage us</p>
+              <span className="h-px w-7 bg-accent" />
+            </div>
             <h2 className="font-display text-3xl sm:text-4xl text-balance mb-4">
               Work with a firm that treats your business seriously
             </h2>
-            <p className="text-primary-foreground/60 font-light mb-8">
+            <p className="text-primary-foreground/60 font-light mb-9 text-lg">
               Visit us at AfriCourts or request a consultation online.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex h-12 items-center justify-center gap-2 bg-accent px-8 text-[12px] font-semibold uppercase tracking-[0.14em] text-accent-foreground hover:bg-champagne transition-colors"
-            >
+            <Link href="/contact" className="btn-primary">
               Contact the firm
               <ArrowRight className="h-4 w-4" />
             </Link>

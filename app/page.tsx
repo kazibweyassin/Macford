@@ -1,6 +1,8 @@
+import type { Metadata } from 'next'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { SectionHeader } from '@/components/ui/section-header'
+import { JsonLd } from '@/components/json-ld'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -9,7 +11,6 @@ import {
   Users,
   Award,
   Briefcase,
-  Gavel,
   Building2,
   Shield,
   Quote,
@@ -17,28 +18,61 @@ import {
   Landmark,
   FileText,
   Handshake,
+  Pickaxe,
+  type LucideIcon,
 } from 'lucide-react'
 import {
   siteConfig,
   practiceAreas,
   firmValues,
   selectedExperience,
-  insights,
 } from '@/lib/site'
+import { getInsightsSorted } from '@/lib/insights'
+import {
+  buildPageMetadata,
+  faqJsonLd,
+  firmFaqs,
+} from '@/lib/seo'
 
-const homePractices = practiceAreas.slice(0, 6)
-const icons = [Briefcase, Building2, Award, Gavel, Scale, Shield]
+export const metadata: Metadata = {
+  ...buildPageMetadata({
+    title: 'Corporate & Commercial Law Firm · Kampala',
+    description: siteConfig.description,
+    path: '/',
+  }),
+  title: {
+    absolute: `${siteConfig.name} | Corporate & Commercial Law Firm · Kampala`,
+  },
+}
+
+const practiceIcons: Record<string, LucideIcon> = {
+  'mineral-law': Pickaxe,
+  'corporate-law': Briefcase,
+  'mergers-acquisitions': Building2,
+  'banking-finance': Award,
+  'intellectual-property': Scale,
+  'commercial-law': FileText,
+  'employment-law': Users,
+}
+
+const mineralPractice = practiceAreas.find((p) => p.slug === 'mineral-law')!
+const homeInsights = getInsightsSorted().slice(0, 3)
 
 const HERO_IMAGE =
   'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1920&q=80'
+const MINERAL_IMAGE =
+  'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=1400&q=80'
+const CHAMBERS_IMAGE =
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'
 
 export default function Home() {
   return (
     <>
+      <JsonLd id="home-faq-schema" data={faqJsonLd([...firmFaqs])} />
       <Navbar />
       <main>
         {/* ─── HERO ─── */}
-        <section className="relative overflow-hidden text-primary-foreground min-h-[min(82vh,780px)] flex items-end sm:items-center">
+        <section className="relative overflow-hidden text-primary-foreground min-h-[min(90vh,900px)] flex items-end sm:items-center">
           <div className="absolute inset-0">
             <Image
               src={HERO_IMAGE}
@@ -46,53 +80,55 @@ export default function Home() {
               fill
               priority
               sizes="100vw"
-              className="object-cover object-[center_28%]"
+              className="object-cover object-[center_28%] scale-[1.03]"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/40 to-ink/20" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-ink/25" />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink/88 via-ink/55 to-ink/28" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/35" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_25%_75%,oklch(0.66_0.12_76_/_0.14),transparent_55%)]" />
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 rule-gold" />
 
-          <div className="container-page relative w-full py-16 sm:py-24 lg:py-32">
-            <div className="max-w-3xl animate-fade-up">
-              <div className="inline-flex items-center gap-3 mb-6">
-                <span className="h-px w-8 bg-accent" />
+          <div className="container-page relative w-full py-20 sm:py-28 lg:py-36">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-3 mb-7 animate-fade-up">
+                <span className="h-px w-9 bg-accent" />
                 <span className="eyebrow text-accent">
                   Kampala · Est. {siteConfig.established}
                 </span>
               </div>
 
-              <h1 className="font-display text-[2.75rem] sm:text-5xl lg:text-[3.75rem] leading-[1.06] text-balance drop-shadow-sm">
+              <h1 className="font-display text-[2.85rem] sm:text-5xl lg:text-[4rem] leading-[1.04] text-balance drop-shadow-sm animate-fade-up delay-100">
                 Clear counsel.
-                <span className="block text-champagne italic font-normal mt-1">
+                <span className="block text-champagne italic font-normal mt-1.5">
                   Confident decisions.
                 </span>
               </h1>
 
-              <p className="mt-6 text-base sm:text-xl text-primary-foreground/90 max-w-xl leading-relaxed font-light drop-shadow-sm">
-                McFord Advocates is a corporate and commercial law firm in
-                Nakasero, advising businesses, investors, and institutions across
-                Uganda with precision and commercial judgment.
+              <p className="mt-7 text-base sm:text-xl text-primary-foreground/90 max-w-xl leading-relaxed font-light drop-shadow-sm animate-fade-up delay-200">
+                Partner-led corporate counsel in Nakasero - including mineral law
+                and precious metal trade, transactions, and day-to-day commercial
+                advice for businesses across Uganda.
               </p>
 
-              <p className="mt-4 text-sm sm:text-base text-primary-foreground/70 font-light">
-                We are McFord. AfriCourts, Kampala.
-              </p>
+              <div className="mt-6 flex flex-wrap gap-2 animate-fade-up delay-300">
+                {['Mineral law', 'Corporate', 'M&A', 'Banking', 'IP'].map((tag) => (
+                  <span
+                    key={tag}
+                    className="border border-primary-foreground/15 bg-primary-foreground/[0.06] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-primary-foreground/70"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-              <div className="mt-10 flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/contact"
-                  className="inline-flex h-12 items-center justify-center gap-2 bg-accent px-8 text-[12px] font-semibold uppercase tracking-[0.14em] text-accent-foreground transition-all hover:bg-champagne"
-                >
+              <div className="mt-10 flex flex-col sm:flex-row gap-3 animate-fade-up delay-400">
+                <Link href="/contact" className="btn-primary">
                   Request a Consultation
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link
-                  href="/services"
-                  className="inline-flex h-12 items-center justify-center border border-white/40 bg-white/10 backdrop-blur-[2px] px-8 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-all hover:bg-white/20"
-                >
-                  Our Practice Areas
+                <Link href="/services/mineral-law" className="btn-ghost-light">
+                  Mineral Law & Metals
                 </Link>
               </div>
             </div>
@@ -101,19 +137,22 @@ export default function Home() {
 
         {/* ─── CREDENTIAL STRIP ─── */}
         <section className="border-b border-border bg-paper">
-          <div className="container-page py-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4">
+          <div className="container-page py-8 sm:py-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
               {[
                 { label: 'Established', value: String(siteConfig.established) },
-                { label: 'Practice areas', value: '8+' },
+                { label: 'Practice areas', value: String(practiceAreas.length) },
                 { label: 'Chambers', value: 'Nakasero' },
                 { label: 'Service model', value: 'Partner-led' },
               ].map((item) => (
-                <div key={item.label} className="text-center md:text-left">
-                  <p className="font-display text-2xl sm:text-3xl text-primary">
+                <div
+                  key={item.label}
+                  className="stat-divider text-center md:text-left md:px-6 first:md:pl-0 last:md:pr-0"
+                >
+                  <p className="font-display text-3xl sm:text-4xl text-primary tracking-tight">
                     {item.value}
                   </p>
-                  <p className="mt-1 text-[11px] uppercase tracking-[0.16em] text-muted-foreground font-medium">
+                  <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-muted-foreground font-medium">
                     {item.label}
                   </p>
                 </div>
@@ -122,11 +161,90 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── WHO WE ARE ─── */}
+        {/* ─── FEATURED: MINERAL LAW ─── */}
         <section className="section-y">
           <div className="container-page">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-              <div className="lg:col-span-5">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 border border-border overflow-hidden shadow-[var(--shadow-soft)]">
+              <div className="relative lg:col-span-5 min-h-[280px] sm:min-h-[360px] lg:min-h-full">
+                <Image
+                  src={MINERAL_IMAGE}
+                  alt="Gold and mineral trade - legal counsel"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-ink/30" />
+                <div className="absolute bottom-6 left-6 right-6 lg:bottom-8 lg:left-8">
+                  <span className="inline-flex items-center gap-2 border border-accent/40 bg-ink/60 backdrop-blur-sm px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-accent">
+                    <Pickaxe className="h-3.5 w-3.5" strokeWidth={1.75} />
+                    Core practice
+                  </span>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7 bg-card p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="h-px w-7 bg-accent" />
+                  <p className="eyebrow text-accent">01 · Featured practice</p>
+                </div>
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] text-foreground text-balance leading-tight">
+                  {mineralPractice.title}
+                </h2>
+                <p className="mt-5 text-muted-foreground font-light leading-relaxed text-base sm:text-lg max-w-xl">
+                  {mineralPractice.description}
+                </p>
+                <ul className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {mineralPractice.details.slice(0, 4).map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground font-light">
+                      <span className="mt-1.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/12">
+                        <Check className="h-2.5 w-2.5 text-accent" strokeWidth={3} />
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-9 flex flex-col sm:flex-row gap-3">
+                  <Link href="/services/mineral-law" className="btn-secondary !h-11 !px-6 !text-[11px]">
+                    Explore mineral law
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="inline-flex h-11 items-center justify-center gap-2 border border-border px-6 text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground transition-colors hover:border-accent/40 hover:text-primary"
+                  >
+                    Instruct this practice
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── WHO WE ARE ─── */}
+        <section className="section-y bg-secondary relative">
+          <div className="absolute top-0 left-0 right-0 rule-gold opacity-50" />
+          <div className="container-page">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+              <div className="lg:col-span-5 order-2 lg:order-1">
+                <div className="relative aspect-[4/5] overflow-hidden border border-border shadow-[var(--shadow-lift)]">
+                  <Image
+                    src={CHAMBERS_IMAGE}
+                    alt="Professional chambers at AfriCourts, Kampala"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <p className="eyebrow text-accent mb-1">Chambers</p>
+                    <p className="font-display text-xl text-primary-foreground">
+                      AfriCourts · Nakasero
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7 order-1 lg:order-2">
                 <SectionHeader
                   eyebrow="Who We Are"
                   title="A full-service commercial practice, built around your business"
@@ -135,10 +253,10 @@ export default function Home() {
                 <div className="mt-6 space-y-4 text-muted-foreground font-light leading-relaxed text-[15px] sm:text-base">
                   <p>
                     From our chambers at AfriCourts on Buganda Road, we advise
-                    companies, financial institutions, investors, and
-                    entrepreneurs on the legal issues that shape growth:
-                    transactions, regulation, disputes, and the protection of
-                    commercial value.
+                    companies, mining operators, financial institutions, investors,
+                    and entrepreneurs - with particular depth in mineral law and
+                    precious metal trade, alongside corporate, banking, IP, and
+                    employment counsel.
                   </p>
                   <p>
                     Clients instruct McFord for partner-led attention, practical
@@ -147,105 +265,144 @@ export default function Home() {
                     commercial firm.
                   </p>
                 </div>
+
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    {
+                      icon: Users,
+                      title: 'Partner-led matters',
+                      text: 'Senior involvement from first instruction to closing.',
+                    },
+                    {
+                      icon: Shield,
+                      title: 'Risk, made clear',
+                      text: 'Exposure identified early so you can decide with confidence.',
+                    },
+                    {
+                      icon: Building2,
+                      title: 'Commercial judgment',
+                      text: 'Advice framed around deals, timelines, and outcomes.',
+                    },
+                    {
+                      icon: Pickaxe,
+                      title: 'Extractives insight',
+                      text: 'Practical counsel on mining and precious metal trade.',
+                    },
+                  ].map((item) => {
+                    const Icon = item.icon
+                    return (
+                      <div
+                        key={item.title}
+                        className="card-quiet flex gap-4 p-5 border border-border bg-card"
+                      >
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-border bg-secondary">
+                          <Icon className="h-4 w-4 text-accent" strokeWidth={1.5} />
+                        </div>
+                        <div>
+                          <h3 className="font-display text-lg text-foreground mb-0.5">
+                            {item.title}
+                          </h3>
+                          <p className="text-xs text-muted-foreground font-light leading-relaxed">
+                            {item.text}
+                          </p>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+
                 <Link
                   href="/about"
                   className="mt-8 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-primary hover:text-accent transition-colors group"
                 >
                   Learn more about the firm
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </Link>
-              </div>
-
-              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  {
-                    icon: Users,
-                    title: 'Partner-led matters',
-                    text: 'Senior lawyers stay involved from first instruction through to closing or judgment.',
-                  },
-                  {
-                    icon: Shield,
-                    title: 'Risk, made clear',
-                    text: 'We identify legal and commercial exposure early, so you can decide with confidence.',
-                  },
-                  {
-                    icon: Building2,
-                    title: 'Commercial judgment',
-                    text: 'Advice framed around deals, timelines, and outcomes, not jargon for its own sake.',
-                  },
-                  {
-                    icon: Award,
-                    title: 'Uganda market insight',
-                    text: 'Local knowledge of regulators, institutions, and how business is actually done.',
-                  },
-                ].map((item) => {
-                  const Icon = item.icon
-                  return (
-                    <div
-                      key={item.title}
-                      className="card-lift group p-7 border border-border bg-card"
-                    >
-                      <div className="mb-4 flex h-11 w-11 items-center justify-center border border-border bg-secondary group-hover:border-accent/50 group-hover:bg-accent/5 transition-colors">
-                        <Icon
-                          className="h-5 w-5 text-primary group-hover:text-accent transition-colors"
-                          strokeWidth={1.5}
-                        />
-                      </div>
-                      <h3 className="font-display text-xl text-foreground mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                        {item.text}
-                      </p>
-                    </div>
-                  )
-                })}
               </div>
             </div>
           </div>
         </section>
 
         {/* ─── PRACTICE AREAS ─── */}
-        <section className="section-y bg-secondary">
+        <section className="section-y">
           <div className="container-page">
             <SectionHeader
               eyebrow="Practice Areas"
               title="Legal expertise across the commercial spectrum"
-              description="From corporate formation and financing to disputes, property, and intellectual property, we provide counsel that supports your commercial objectives."
+              description="From mineral law and precious metal trade to corporate formation, financing, IP, and employment - counsel that supports your commercial objectives."
               action={
-                <Link
-                  href="/services"
-                  className="inline-flex h-11 items-center justify-center gap-2 bg-primary px-6 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary-foreground transition-all hover:bg-ink-soft"
-                >
+                <Link href="/services" className="btn-secondary !h-11 !px-6 !text-[11px]">
                   View all services
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               }
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border shadow-sm">
-              {homePractices.map((area, index) => {
-                const Icon = icons[index % icons.length]
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border shadow-[var(--shadow-soft)]">
+              {practiceAreas.map((area, index) => {
+                const Icon = practiceIcons[area.slug] ?? Briefcase
+                const isFeatured = area.slug === 'mineral-law'
                 return (
                   <Link
                     key={area.slug}
-                    href={`/services#${area.slug}`}
-                    className="group relative bg-card p-8 sm:p-9 transition-all duration-300 hover:bg-paper"
+                    href={`/services/${area.slug}`}
+                    className={`group relative p-8 sm:p-9 transition-all duration-300 hover:bg-paper ${
+                      isFeatured
+                        ? 'bg-ink text-primary-foreground md:col-span-2 lg:col-span-1'
+                        : 'bg-card'
+                    }`}
                   >
-                    <div className="absolute top-0 left-0 h-full w-0.5 bg-accent scale-y-0 origin-top group-hover:scale-y-100 transition-transform duration-300" />
-                    <Icon
-                      className="h-5 w-5 text-accent mb-5"
-                      strokeWidth={1.5}
+                    <div
+                      className={`absolute top-0 left-0 h-full w-0.5 scale-y-0 origin-top group-hover:scale-y-100 transition-transform duration-300 ${
+                        isFeatured ? 'bg-accent' : 'bg-accent'
+                      }`}
                     />
-                    <h3 className="font-display text-xl sm:text-[1.35rem] text-foreground mb-2 group-hover:text-primary transition-colors">
+                    <div className="flex items-start justify-between mb-5">
+                      <div
+                        className={`flex h-11 w-11 items-center justify-center border transition-colors ${
+                          isFeatured
+                            ? 'border-primary-foreground/15 bg-primary-foreground/5 group-hover:border-accent/50'
+                            : 'border-border bg-secondary group-hover:border-accent/40 group-hover:bg-accent/5'
+                        }`}
+                      >
+                        <Icon className="h-5 w-5 text-accent" strokeWidth={1.5} />
+                      </div>
+                      <span
+                        className={`font-display text-2xl select-none transition-colors ${
+                          isFeatured
+                            ? 'text-accent/35 group-hover:text-accent/55'
+                            : 'text-accent/20 group-hover:text-accent/40'
+                        }`}
+                      >
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                    {isFeatured && (
+                      <span className="mb-3 inline-block text-[10px] font-semibold uppercase tracking-[0.16em] text-accent">
+                        Core focus
+                      </span>
+                    )}
+                    <h3
+                      className={`font-display text-xl sm:text-[1.35rem] mb-2 transition-colors ${
+                        isFeatured
+                          ? 'text-primary-foreground'
+                          : 'text-foreground group-hover:text-primary'
+                      }`}
+                    >
                       {area.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6">
+                    <p
+                      className={`text-sm font-light leading-relaxed mb-6 ${
+                        isFeatured
+                          ? 'text-primary-foreground/65'
+                          : 'text-muted-foreground'
+                      }`}
+                    >
                       {area.short}
                     </p>
                     <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
                       Learn more
-                      <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                      <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
                     </span>
                   </Link>
                 )
@@ -255,26 +412,34 @@ export default function Home() {
         </section>
 
         {/* ─── WHO WE ACT FOR ─── */}
-        <section className="section-y-sm border-b border-border">
+        <section className="section-y-sm border-y border-border bg-paper">
           <div className="container-page">
             <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-16">
               <div className="lg:max-w-xs shrink-0">
-                <p className="eyebrow text-accent mb-2">Who We Act For</p>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="h-px w-6 bg-accent" />
+                  <p className="eyebrow text-accent">Who We Act For</p>
+                </div>
                 <h2 className="font-display text-2xl sm:text-3xl text-foreground">
                   Clients who demand clarity and results
                 </h2>
               </div>
-              <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4">
+              <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3.5">
                 {[
+                  'Mining operators & traders',
+                  'Precious metal exporters',
                   'Private companies & SMEs',
                   'Financial institutions',
                   'Investors & sponsors',
-                  'Real estate developers',
-                  'Technology businesses',
                   'International counsel',
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5">
-                    <Check className="h-3.5 w-3.5 text-accent shrink-0" strokeWidth={2.5} />
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 rounded-sm border border-transparent px-1 py-1.5 hover:border-border hover:bg-card transition-colors"
+                  >
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/10">
+                      <Check className="h-3 w-3 text-accent" strokeWidth={2.5} />
+                    </span>
                     <span className="text-sm text-muted-foreground font-light">
                       {item}
                     </span>
@@ -285,7 +450,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── SELECTED EXPERIENCE (ENS-style) ─── */}
+        {/* ─── SELECTED EXPERIENCE ─── */}
         <section className="section-y">
           <div className="container-page">
             <SectionHeader
@@ -294,14 +459,14 @@ export default function Home() {
               description="Representative, anonymised matters across our core practices. Client confidentiality is always preserved."
               align="center"
             />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border shadow-[var(--shadow-soft)]">
               {selectedExperience.map((item) => (
                 <article
                   key={item.headline}
-                  className="bg-card p-7 sm:p-8 hover:bg-paper transition-colors"
+                  className="card-quiet bg-card p-7 sm:p-8 group"
                 >
                   <p className="eyebrow text-accent mb-3">{item.sector}</p>
-                  <h3 className="font-display text-xl sm:text-2xl text-foreground mb-3 uppercase tracking-wide">
+                  <h3 className="font-display text-xl sm:text-2xl text-foreground mb-3 tracking-wide group-hover:text-primary transition-colors">
                     {item.headline}
                   </h3>
                   <p className="text-sm text-muted-foreground font-light leading-relaxed">
@@ -325,28 +490,26 @@ export default function Home() {
               title="Helping clients manage legal complexity"
               description="Practical notes on issues that frequently arise for businesses operating in Uganda."
               action={
-                <Link
-                  href="/contact"
-                  className="inline-flex h-11 items-center justify-center gap-2 border border-primary/20 bg-primary px-6 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary-foreground transition-all hover:bg-ink-soft"
-                >
-                  Discuss a matter
+                <Link href="/insights" className="btn-secondary !h-11 !px-6 !text-[11px]">
+                  View all insights
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               }
             />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {insights.map((post) => (
-                <article
-                  key={post.title}
-                  className="group flex flex-col border border-border bg-card p-7 sm:p-8 hover:border-accent/40 transition-colors"
+              {homeInsights.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/insights/${post.slug}`}
+                  className="card-lift group flex flex-col border border-border bg-card p-7 sm:p-8"
                 >
                   <div className="flex items-center gap-3 mb-5">
                     <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
-                      {post.category}
+                      {post.type}
                     </span>
                     <span className="h-px flex-1 bg-border" />
                     <span className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
-                      {post.date}
+                      {post.dateLabel}
                     </span>
                   </div>
                   <h3 className="font-display text-xl text-foreground mb-3 leading-snug group-hover:text-primary transition-colors">
@@ -355,14 +518,11 @@ export default function Home() {
                   <p className="text-sm text-muted-foreground font-light leading-relaxed flex-1">
                     {post.excerpt}
                   </p>
-                  <Link
-                    href="/contact"
-                    className="mt-6 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent"
-                  >
-                    Speak to our team
-                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                </article>
+                  <span className="mt-6 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+                    Read insight
+                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </Link>
               ))}
             </div>
           </div>
@@ -381,12 +541,13 @@ export default function Home() {
               {firmValues.map((value, i) => (
                 <div
                   key={value.title}
-                  className="relative p-7 sm:p-8 border border-border bg-card hover:border-accent/30 transition-colors"
+                  className="card-quiet relative p-7 sm:p-8 border border-border bg-card"
                 >
-                  <span className="font-display text-4xl text-accent/15 absolute top-5 right-6 leading-none select-none">
+                  <span className="font-display text-5xl text-accent/12 absolute top-4 right-5 leading-none select-none">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="font-display text-xl text-foreground mb-2 pr-10">
+                  <div className="h-0.5 w-8 bg-accent/60 mb-5" />
+                  <h3 className="font-display text-xl text-foreground mb-2 pr-12">
                     {value.title}
                   </h3>
                   <p className="text-sm text-muted-foreground font-light leading-relaxed">
@@ -399,26 +560,30 @@ export default function Home() {
         </section>
 
         {/* ─── PERSONAL ATTENTION BAND ─── */}
-        <section className="relative overflow-hidden hero-mesh grain py-20 sm:py-24 text-primary-foreground">
+        <section className="relative overflow-hidden hero-mesh grain py-20 sm:py-28 text-primary-foreground">
           <div className="absolute top-0 left-0 right-0 rule-gold" />
           <div className="absolute bottom-0 left-0 right-0 rule-gold" />
           <div className="container-page relative">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               <div className="lg:col-span-7">
-                <p className="eyebrow text-accent mb-4">Personalised Attention</p>
-                <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] text-balance leading-tight">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="h-px w-7 bg-accent" />
+                  <p className="eyebrow text-accent">Personalised Attention</p>
+                </div>
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] text-balance leading-tight">
                   Advice that is rigorous, responsive, and commercially aware
                 </h2>
                 <p className="mt-5 text-primary-foreground/70 font-light text-lg max-w-xl leading-relaxed">
-                  Whether you are closing a transaction, resolving a dispute, or
-                  structuring a new venture, you work with lawyers who understand
-                  both the law and the business context in which it operates.
+                  Whether you are closing a transaction, structuring a precious
+                  metal trade, resolving a dispute, or launching a venture - you
+                  work with lawyers who understand both the law and the business
+                  context.
                 </p>
               </div>
               <div className="lg:col-span-5">
-                <div className="border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm p-8">
+                <div className="relative border border-primary-foreground/12 bg-primary-foreground/[0.05] backdrop-blur-sm p-8 sm:p-9 frame-corners">
                   <Quote
-                    className="h-7 w-7 text-accent mb-5 opacity-80"
+                    className="h-8 w-8 text-accent mb-5 opacity-70"
                     strokeWidth={1.25}
                   />
                   <blockquote className="font-display text-xl sm:text-2xl leading-snug text-primary-foreground/95">
@@ -426,7 +591,7 @@ export default function Home() {
                     disputes, and clients who return because the advice was clear
                     and the execution reliable.
                   </blockquote>
-                  <p className="mt-6 eyebrow text-primary-foreground/45">
+                  <p className="mt-7 eyebrow text-primary-foreground/40">
                     {siteConfig.name}
                   </p>
                 </div>
@@ -444,7 +609,7 @@ export default function Home() {
               description="Every engagement follows a disciplined process designed to give you certainty on scope, cost, and next steps."
               align="center"
             />
-            <div className="grid grid-cols-1 md:grid-cols-4 border border-border bg-border gap-px">
+            <div className="grid grid-cols-1 md:grid-cols-4 border border-border bg-border gap-px shadow-[var(--shadow-soft)]">
               {[
                 {
                   step: '01',
@@ -473,12 +638,17 @@ export default function Home() {
               ].map((item) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.step} className="bg-card p-7 sm:p-8">
+                  <div
+                    key={item.step}
+                    className="bg-card p-7 sm:p-8 group hover:bg-paper transition-colors"
+                  >
                     <div className="flex items-center justify-between mb-5">
-                      <span className="font-display text-3xl text-accent/35">
+                      <span className="font-display text-3xl text-accent/30 group-hover:text-accent/50 transition-colors">
                         {item.step}
                       </span>
-                      <Icon className="h-5 w-5 text-accent" strokeWidth={1.5} />
+                      <div className="flex h-9 w-9 items-center justify-center border border-border bg-secondary group-hover:border-accent/40 transition-colors">
+                        <Icon className="h-4 w-4 text-accent" strokeWidth={1.5} />
+                      </div>
                     </div>
                     <h3 className="font-display text-xl text-foreground mb-2">
                       {item.title}
@@ -493,40 +663,71 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ─── FAQ ─── */}
+        <section className="section-y border-t border-border" aria-label="Frequently asked questions">
+          <div className="container-page">
+            <SectionHeader
+              eyebrow="FAQ"
+              title="Common questions about the firm"
+              description="Quick answers for clients and advisors evaluating corporate counsel in Kampala."
+              align="center"
+            />
+            <div className="mx-auto max-w-3xl divide-y divide-border border border-border bg-card shadow-[var(--shadow-soft)]">
+              {firmFaqs.map((faq) => (
+                <details key={faq.question} className="group p-6 sm:p-7">
+                  <summary className="cursor-pointer list-none font-display text-lg sm:text-xl text-foreground flex items-start justify-between gap-4 hover:text-primary transition-colors">
+                    <span>{faq.question}</span>
+                    <span
+                      className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center border border-border text-accent text-sm transition-all duration-300 group-open:rotate-45 group-open:border-accent/40 group-open:bg-accent/5"
+                      aria-hidden
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-4 text-sm sm:text-base text-muted-foreground font-light leading-relaxed pr-8">
+                    {faq.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ─── FINAL CTA ─── */}
         <section className="section-y">
           <div className="container-page">
-            <div className="relative overflow-hidden border border-border bg-ink text-primary-foreground">
-              <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_top_right,oklch(0.68_0.11_78_/_0.3),transparent_55%)]" />
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/70 to-transparent" />
+            <div className="relative overflow-hidden panel-ink">
+              <div className="absolute inset-0 opacity-50 bg-[radial-gradient(ellipse_at_top_right,oklch(0.66_0.12_76_/_0.28),transparent_55%)]" />
+              <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-size-[48px_48px]" />
+              <div className="absolute top-0 left-0 right-0 rule-gold" />
               <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 p-10 sm:p-14 lg:p-16 items-center">
                 <div className="lg:col-span-7">
-                  <p className="eyebrow text-accent mb-4">Get Started</p>
+                  <div className="flex items-center gap-3 mb-5">
+                    <span className="h-px w-7 bg-accent" />
+                    <p className="eyebrow text-accent">Get Started</p>
+                  </div>
                   <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] text-balance leading-tight">
                     Instruct counsel that treats your business seriously
                   </h2>
-                  <p className="mt-5 text-primary-foreground/65 font-light text-lg max-w-lg leading-relaxed">
+                  <p className="mt-5 text-primary-foreground/60 font-light text-lg max-w-lg leading-relaxed">
                     Call us, write to us, or send a confidential enquiry. We respond
                     promptly and handle every matter with discretion.
                   </p>
                 </div>
                 <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3">
-                  <Link
-                    href="/contact"
-                    className="inline-flex h-12 items-center justify-center gap-2 bg-accent px-8 text-[12px] font-semibold uppercase tracking-[0.14em] text-accent-foreground transition-all hover:bg-champagne"
-                  >
+                  <Link href="/contact" className="btn-primary w-full sm:w-auto lg:w-full">
                     Contact the firm
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                   <a
                     href={siteConfig.phones[0].href}
-                    className="inline-flex h-12 items-center justify-center border border-primary-foreground/25 px-8 text-[12px] font-semibold uppercase tracking-[0.12em] text-primary-foreground transition-all hover:border-accent/60 hover:bg-primary-foreground/5"
+                    className="inline-flex h-12 items-center justify-center border border-primary-foreground/20 px-8 text-[12px] font-semibold uppercase tracking-[0.12em] text-primary-foreground transition-all hover:border-accent/50 hover:bg-primary-foreground/5"
                   >
                     {siteConfig.phones[0].display}
                   </a>
                   <a
                     href={siteConfig.emailHref}
-                    className="inline-flex h-12 items-center justify-center border border-primary-foreground/15 px-8 text-[12px] font-medium tracking-wide text-primary-foreground/80 transition-all hover:text-accent"
+                    className="inline-flex h-12 items-center justify-center border border-primary-foreground/10 px-8 text-[12px] font-medium tracking-wide text-primary-foreground/70 transition-all hover:text-accent hover:border-accent/30"
                   >
                     {siteConfig.email}
                   </a>

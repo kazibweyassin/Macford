@@ -30,18 +30,27 @@ export function SectionHeader({
     >
       <div className={cn(align === 'left' && action && 'max-w-2xl')}>
         {eyebrow && (
-          <p
+          <div
             className={cn(
-              'eyebrow mb-3',
-              light ? 'text-accent' : 'text-accent'
+              'mb-4 flex items-center gap-3',
+              align === 'center' && 'justify-center'
             )}
           >
-            {eyebrow}
-          </p>
+            <span
+              className={cn(
+                'h-px w-7 shrink-0',
+                light ? 'bg-accent/80' : 'bg-accent'
+              )}
+              aria-hidden
+            />
+            <p className={cn('eyebrow', light ? 'text-accent' : 'text-accent')}>
+              {eyebrow}
+            </p>
+          </div>
         )}
         <h2
           className={cn(
-            'font-display text-3xl sm:text-4xl lg:text-[2.75rem] text-balance',
+            'font-display text-3xl sm:text-4xl lg:text-[2.75rem] text-balance leading-[1.1]',
             light ? 'text-primary-foreground' : 'text-foreground'
           )}
         >

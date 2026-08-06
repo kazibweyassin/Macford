@@ -11,7 +11,7 @@
 - Hero section with value proposition
 - Trust badge
 - Statistics section (10+ years, 500+ clients, 20+ experts, 98% satisfaction)
-- Practice areas overview (4 cards)
+- Practice areas overview (featured cards from full list of 9)
 - Why Choose Us (6 key differentiators)
 - Final CTA section (blue background)
 - Footer
@@ -31,7 +31,7 @@
 - Page header with subtitle
 - Our Story section (firm history, founding 2015)
 - Mission, Vision & Values (3 separate cards)
-- Areas of Expertise (6 categories with sub-items)
+- Areas of Expertise (all practice areas with links)
 - Key Achievements section (6 achievement cards)
 
 **Content Highlights:**
@@ -42,45 +42,70 @@
 
 ---
 
-### 3. Services Page
+### 3. Services / Practice Areas
 **URL:** `/services`  
-**Title:** Legal Services - McFord Advocates Uganda
+**Title:** Practice Areas | McFord Advocates  
+**Detail pages:** `/services/[slug]`
 
-**Practice Areas:**
-1. **Corporate Law**
-   - Business formation
-   - Corporate governance
-   - Compliance
+**Practice Areas** (source: `lib/site.ts` → `practiceAreas`):
 
-2. **Mergers & Acquisitions**
-   - M&A structuring
-   - Due diligence
-   - Buyer/seller representation
+1. **Corporate & Commercial** (`corporate-commercial`)
+   - Company registration and formation
+   - Corporate governance & board advisory
+   - Commercial contracts and joint ventures
+   - Regulatory compliance and licensing
 
-3. **Banking & Finance**
-   - Lending transactions
-   - Securities documentation
-   - Project finance
+2. **Mergers & Acquisitions** (`mergers-acquisitions`)
+   - Transaction structuring and strategy
+   - Legal due diligence
+   - Share and asset purchase agreements
+   - Buyer and seller representation
 
-4. **Intellectual Property**
-   - Trademark registration
-   - Patent protection
-   - Copyright enforcement
+3. **Banking & Finance** (`banking-finance`)
+   - Secured and unsecured lending
+   - Security documentation & perfection
+   - Project and trade finance
+   - Financial regulatory compliance
 
-5. **Commercial Law**
-   - Contract drafting
-   - Dispute resolution
-   - International trade
+4. **Dispute Resolution** (`dispute-resolution`)
+   - Commercial and civil litigation
+   - Arbitration and mediation
+   - Debt recovery
+   - Enforcement of judgments & awards
 
-6. **Employment Law**
-   - Employment contracts
-   - Workplace policies
-   - Labor compliance
+5. **Mineral Law** (`mineral-law`)
+   - Mining and mineral rights licensing
+   - Gold trading and export compliance
+   - Exploration and production agreements
+   - Regulatory and environmental compliance
+
+6. **Intellectual Property** (`intellectual-property`)
+   - Trademark registration and renewals
+   - Copyright and patent advisory
+   - IP licensing and assignments
+   - Infringement and enforcement
+
+7. **Employment & Labour** (`employment`)
+   - Employment contracts and handbooks
+   - Workplace policies and compliance
+   - Disciplinary and termination processes
+   - Labour dispute resolution
+
+8. **Real Estate & Property** (`real-estate`)
+   - Land acquisition and conveyancing
+   - Lease drafting and review
+   - Title due diligence
+   - Development and joint venture structures
+
+9. **Energy & Infrastructure** (`energy-infrastructure`)
+   - Project documentation review
+   - Regulatory and licensing support
+   - Construction and EPC contracts
+   - Local content compliance
 
 **Sections:**
-- Service cards with detailed descriptions
-- Why Choose Our Services (6 reasons)
-- 4-Step Process visualization
+- Practice area cards with links to detail pages
+- Why choose McFord Advocates
 - Final CTA
 
 ---
@@ -136,19 +161,21 @@
 - Service of Interest (dropdown)
 - Message (required)
 
-**Service Options in Dropdown:**
-- Corporate Law
+**Service Options in Dropdown:** (from `practiceAreas` in `lib/site.ts`)
+- Corporate & Commercial
 - Mergers & Acquisitions
 - Banking & Finance
+- Dispute Resolution
+- Mineral Law
 - Intellectual Property
-- Commercial Law
-- Employment Law
-- Other
+- Employment & Labour
+- Real Estate & Property
+- Energy & Infrastructure
 
 **Contact Information:**
 - **Address:** Kampala, Uganda, East Africa
 - **Phone:** +256 (0) 773 000 000
-- **Email:** info@mcfordadvocates.com
+- **Email:** info@mcfordadvocates.co.ug
 - **Hours:** Mon-Fri 8AM-5PM, Sat 9AM-1PM
 
 **Sections:**
@@ -168,9 +195,18 @@
 
 ```
 Home (/)
-├── About (/about)
-├── Services (/services)
-├── Team (/team)
+├── Our Firm (/about)
+├── Practice Areas (/services)
+│   ├── Corporate & Commercial
+│   ├── Mergers & Acquisitions
+│   ├── Banking & Finance
+│   ├── Dispute Resolution
+│   ├── Mineral Law
+│   ├── Intellectual Property
+│   ├── Employment & Labour
+│   ├── Real Estate & Property
+│   └── Energy & Infrastructure
+├── Our Lawyers (/team)
 └── Contact (/contact)
 ```
 
@@ -248,11 +284,11 @@ All pages have:
 
 ## 📊 Content Statistics
 
-- **Total Pages:** 5
+- **Total Pages:** 5 main + 9 practice detail pages
 - **Total Sections:** 20+
-- **Team Members:** 8
-- **Practice Areas:** 6
-- **Services Detailed:** 20+
+- **Team Members:** 4 (public profiles; see live team page)
+- **Practice Areas:** 9
+- **Services Detailed:** 50+ offerings across practices
 - **FAQs:** 4
 - **CTAs:** 10+
 - **Images/Icons:** 30+

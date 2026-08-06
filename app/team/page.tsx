@@ -1,20 +1,38 @@
+import type { Metadata } from 'next'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { PageHero } from '@/components/ui/page-hero'
 import { SectionHeader } from '@/components/ui/section-header'
+import { JsonLd } from '@/components/json-ld'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { siteConfig, teamMembers, firmValues } from '@/lib/site'
+import { breadcrumbJsonLd, buildPageMetadata, teamJsonLd } from '@/lib/seo'
 
-export const metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Our Lawyers',
-  description: `Meet the legal professionals at ${siteConfig.name}, AfriCourts, Nakasero, Kampala.`,
-}
+  description: `Meet the advocates and legal professionals at ${siteConfig.name}, AfriCourts, Nakasero, Kampala - partner-led commercial counsel for Uganda and East Africa.`,
+  path: '/team',
+  keywords: [
+    'McFord Advocates lawyers',
+    'advocates Kampala',
+    'corporate lawyers Uganda team',
+    ...siteConfig.keywords.slice(0, 6),
+  ],
+})
 
 export default function Team() {
   return (
     <>
+      <JsonLd
+        id="team-breadcrumb"
+        data={breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Our Lawyers', path: '/team' },
+        ])}
+      />
+      <JsonLd id="team-schema" data={teamJsonLd()} />
       <Navbar />
       <main>
         <PageHero
@@ -140,7 +158,8 @@ export default function Team() {
             />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {firmValues.map((value) => (
-                <div key={value.title} className="p-7 border border-border bg-card">
+                <div key={value.title} className="card-quiet p-7 border border-border bg-card">
+                  <div className="h-0.5 w-6 bg-accent/50 mb-4" />
                   <h3 className="font-display text-xl text-foreground mb-2">
                     {value.title}
                   </h3>
@@ -153,19 +172,22 @@ export default function Team() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden hero-mesh grain py-20 text-primary-foreground">
+        <section className="relative overflow-hidden hero-mesh grain py-20 sm:py-24 text-primary-foreground">
           <div className="absolute top-0 left-0 right-0 rule-gold" />
+          <div className="absolute bottom-0 left-0 right-0 rule-gold" />
           <div className="container-page text-center max-w-3xl">
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="h-px w-7 bg-accent" />
+              <p className="eyebrow text-accent">Next step</p>
+              <span className="h-px w-7 bg-accent" />
+            </div>
             <h2 className="font-display text-3xl sm:text-4xl text-balance mb-4">
               Speak with our team
             </h2>
-            <p className="text-primary-foreground/60 font-light mb-8">
+            <p className="text-primary-foreground/60 font-light mb-9 text-lg">
               Email {siteConfig.email} or visit AfriCourts, Nakasero.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex h-12 items-center justify-center gap-2 bg-accent px-8 text-[12px] font-semibold uppercase tracking-[0.14em] text-accent-foreground hover:bg-champagne transition-colors"
-            >
+            <Link href="/contact" className="btn-primary">
               Contact us
               <ArrowRight className="h-4 w-4" />
             </Link>

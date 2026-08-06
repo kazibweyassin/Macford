@@ -1,7 +1,9 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Outfit } from 'next/font/google'
+import { JsonLd } from '@/components/json-ld'
 import { siteConfig } from '@/lib/site'
+import { organizationJsonLd } from '@/lib/seo'
 import './globals.css'
 
 const display = Cormorant_Garamond({
@@ -19,12 +21,33 @@ const body = Outfit({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: `${siteConfig.name} | Corporate & Commercial Law Firm · Kampala`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  metadataBase: new URL(siteConfig.url),
+  applicationName: siteConfig.name,
+  keywords: [...siteConfig.keywords],
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: 'Legal Services',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: siteConfig.url,
+    types: {
+      'text/plain': [
+        { url: '/llms.txt', title: 'LLM context' },
+        { url: '/llms-full.txt', title: 'LLM full context' },
+      ],
+    },
+  },
+  manifest: '/manifest.webmanifest',
   openGraph: {
     title: `${siteConfig.name} | Corporate Law Firm Uganda`,
     description: siteConfig.description,
@@ -32,29 +55,45 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: 'en_UG',
     type: 'website',
-  },
-  icons: {
-    icon: [
+    images: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} - corporate and commercial law firm, Kampala`,
       },
     ],
-    apple: '/apple-icon.png',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${siteConfig.name} | Corporate Law Firm Uganda`,
+    description: siteConfig.description,
+    images: ['/twitter-image'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  other: {
+    'geo.region': 'UG-C',
+    'geo.placename': 'Kampala',
+    'geo.position': `${siteConfig.address.geo.latitude};${siteConfig.address.geo.longitude}`,
+    ICBM: `${siteConfig.address.geo.latitude}, ${siteConfig.address.geo.longitude}`,
   },
 }
 
 export const viewport: Viewport = {
   colorScheme: 'light',
   themeColor: '#141c2e',
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({
@@ -63,8 +102,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`light ${display.variable} ${body.variable}`}>
+    <html lang="en-UG" className={`light ${display.variable} ${body.variable}`}>
       <body className="min-h-screen bg-background text-foreground font-body antialiased">
+        <JsonLd id="organization-schema" data={organizationJsonLd()} />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

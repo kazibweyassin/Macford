@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Phone } from 'lucide-react'
 import { siteConfig } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
@@ -23,27 +23,35 @@ export function Navbar() {
     setIsOpen(false)
   }, [pathname])
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
+
   return (
     <header className="sticky top-0 z-50">
       {/* Top utility bar */}
       <div className="hidden lg:block bg-ink text-primary-foreground">
         <div className="container-page flex h-9 items-center justify-between text-[11px] tracking-wide">
-          <p className="text-primary-foreground/55 font-medium">
-            AfriCourts · Plot 107 Buganda Road · Nakasero, Kampala
+          <p className="text-primary-foreground/50 font-medium">
+            Official site: {siteConfig.domain} · AfriCourts, Nakasero, Kampala
           </p>
           <div className="flex items-center gap-6">
             {siteConfig.phones.map((p) => (
               <a
                 key={p.href}
                 href={p.href}
-                className="text-primary-foreground/70 hover:text-accent transition-colors"
+                className="inline-flex items-center gap-1.5 text-primary-foreground/65 hover:text-accent transition-colors"
               >
+                <Phone className="h-3 w-3 opacity-60" strokeWidth={1.75} />
                 {p.display}
               </a>
             ))}
             <a
               href={siteConfig.emailHref}
-              className="text-primary-foreground/70 hover:text-accent transition-colors"
+              className="text-primary-foreground/65 hover:text-accent transition-colors"
             >
               {siteConfig.email}
             </a>
@@ -56,28 +64,30 @@ export function Navbar() {
         className={cn(
           'border-b transition-all duration-300',
           scrolled
-            ? 'bg-background/90 backdrop-blur-xl border-border shadow-[0_8px_30px_-12px_rgba(20,28,46,0.12)]'
-            : 'bg-background/95 backdrop-blur-md border-border/60'
+            ? 'bg-background/92 backdrop-blur-xl border-border shadow-[0_10px_40px_-18px_rgba(20,28,46,0.18)]'
+            : 'bg-background/96 backdrop-blur-md border-border/50'
         )}
       >
         <div className="container-page">
-          <div className="flex h-[4.25rem] items-center justify-between gap-6">
+          <div className="flex h-[4.35rem] items-center justify-between gap-6">
             <Link href="/" className="group flex items-center gap-3.5 min-w-0">
-              <div className="relative flex h-10 w-10 items-center justify-center border border-primary/15 bg-primary text-primary-foreground transition-colors group-hover:border-accent/40">
-                <span className="font-display text-lg font-semibold tracking-tight">M</span>
-                <span className="absolute -bottom-px left-1 right-1 h-px bg-accent opacity-80" />
+              <div className="relative flex h-10 w-10 items-center justify-center bg-primary text-primary-foreground transition-transform duration-300 group-hover:scale-[1.03]">
+                <span className="font-display text-lg font-semibold tracking-tight">
+                  M
+                </span>
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent" />
               </div>
               <div className="leading-none min-w-0">
-                <span className="block font-display text-[1.35rem] font-semibold text-primary tracking-tight">
+                <span className="block font-display text-[1.4rem] font-semibold text-primary tracking-tight">
                   McFord
                 </span>
-                <span className="mt-1 block text-[10px] uppercase tracking-[0.22em] text-muted-foreground font-medium">
+                <span className="mt-1 block text-[10px] uppercase tracking-[0.24em] text-muted-foreground font-medium">
                   Advocates
                 </span>
               </div>
             </Link>
 
-            <div className="hidden lg:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-0.5">
               {siteConfig.nav.map((item) => {
                 const active =
                   item.href === '/'
@@ -97,8 +107,8 @@ export function Navbar() {
                     {item.label}
                     <span
                       className={cn(
-                        'absolute left-3.5 right-3.5 -bottom-0.5 h-px bg-accent transition-opacity duration-300',
-                        active ? 'opacity-100' : 'opacity-0'
+                        'absolute left-3.5 right-3.5 -bottom-0.5 h-[2px] bg-accent transition-all duration-300 origin-left',
+                        active ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
                       )}
                     />
                   </Link>
@@ -107,17 +117,14 @@ export function Navbar() {
             </div>
 
             <div className="hidden lg:block">
-              <Link
-                href="/contact"
-                className="inline-flex h-10 items-center justify-center border border-accent/30 bg-primary px-5 text-[12px] font-semibold uppercase tracking-[0.14em] text-primary-foreground transition-all hover:bg-ink-soft hover:border-accent/60"
-              >
+              <Link href="/contact" className="btn-secondary !h-10 !px-5 !text-[11px]">
                 Consultation
               </Link>
             </div>
 
             <button
               type="button"
-              className="lg:hidden inline-flex h-10 w-10 items-center justify-center border border-border text-foreground"
+              className="lg:hidden inline-flex h-10 w-10 items-center justify-center border border-border bg-card text-foreground transition-colors hover:border-accent/40"
               onClick={() => setIsOpen((v) => !v)}
               aria-label="Toggle menu"
               aria-expanded={isOpen}
@@ -126,29 +133,51 @@ export function Navbar() {
             </button>
           </div>
 
-          {isOpen && (
-            <div className="lg:hidden border-t border-border pb-5 pt-3 space-y-1">
-              {siteConfig.nav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block px-2 py-3 text-sm font-medium text-foreground"
-                >
-                  {item.label}
-                </Link>
-              ))}
+          {/* Mobile menu */}
+          <div
+            className={cn(
+              'lg:hidden overflow-hidden transition-all duration-300 ease-out',
+              isOpen ? 'max-h-[28rem] opacity-100' : 'max-h-0 opacity-0'
+            )}
+          >
+            <div className="border-t border-border pb-6 pt-3 space-y-0.5">
+              {siteConfig.nav.map((item) => {
+                const active =
+                  item.href === '/'
+                    ? pathname === '/'
+                    : pathname.startsWith(item.href)
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      'flex items-center justify-between px-2 py-3.5 text-sm font-medium transition-colors',
+                      active ? 'text-primary' : 'text-foreground/80'
+                    )}
+                  >
+                    {item.label}
+                    {active && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                    )}
+                  </Link>
+                )
+              })}
               <Link
                 href="/contact"
-                className="mt-2 flex h-11 items-center justify-center bg-primary text-[12px] font-semibold uppercase tracking-[0.14em] text-primary-foreground"
+                className="btn-primary mt-3 w-full"
               >
                 Request Consultation
               </Link>
-              <div className="px-2 pt-4 space-y-1 text-xs text-muted-foreground">
-                <p>{siteConfig.phones[0].display}</p>
-                <p>{siteConfig.email}</p>
+              <div className="px-2 pt-5 space-y-1.5 text-xs text-muted-foreground border-t border-border mt-4">
+                <a href={siteConfig.phones[0].href} className="block hover:text-accent transition-colors">
+                  {siteConfig.phones[0].display}
+                </a>
+                <a href={siteConfig.emailHref} className="block hover:text-accent transition-colors">
+                  {siteConfig.email}
+                </a>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </nav>
     </header>

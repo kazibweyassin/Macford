@@ -4,7 +4,7 @@ A modern, responsive website for McFord Advocates, Uganda's leading corporate la
 
 ## 🌐 Website Overview
 
-McFord Advocates is a Kampala-based law firm specializing in corporate law, mergers & acquisitions, banking and finance, telecommunications, and infrastructure development. This website showcases their expertise and services.
+McFord Advocates is a Kampala-based law firm specialising in mineral law and precious metal trade, corporate law, mergers & acquisitions, banking and finance, intellectual property, commercial law, and employment law.
 
 ## 📄 Pages
 
@@ -18,21 +18,22 @@ McFord Advocates is a Kampala-based law firm specializing in corporate law, merg
 ### 2. **About** (`/about`)
 - Company story and history (founded 2015)
 - Mission, Vision, and Values statements
-- Comprehensive expertise areas across 6 practice categories
+- Comprehensive expertise across all practice categories
 - Key achievements and milestones
 - Detailed information about the firm's credentials
 
-### 3. **Services** (`/services`)
-- Detailed breakdown of 6 major practice areas:
-  - Corporate Law
-  - Mergers & Acquisitions
-  - Banking & Finance
-  - Intellectual Property
-  - Commercial Law
-  - Employment Law
+### 3. **Services / Practice Areas** (`/services`)
+- Hub page plus dedicated pages for each practice area (`/services/[slug]`)
+- **7 practice areas** (source of truth: `lib/site.ts` → `practiceAreas`):
+  1. **Mineral Law & Precious Metal Trade** (`mineral-law`) - mining licences, gold/precious metal trade, export compliance
+  2. **Corporate Law** (`corporate-law`) - formation, governance, compliance
+  3. **Mergers & Acquisitions** (`mergers-acquisitions`) - structuring, due diligence, execution
+  4. **Banking & Finance** (`banking-finance`) - lending, securities, project finance
+  5. **Intellectual Property** (`intellectual-property`) - trademarks, patents, copyright
+  6. **Commercial Law** (`commercial-law`) - contracts, disputes, international trade
+  7. **Employment Law** (`employment-law`) - contracts, policies, labour compliance
 - Benefits of choosing McFord Advocates
-- 4-step service process (Consultation → Analysis → Implementation → Follow-up)
-- Each service includes specific offerings and deliverables
+- Each practice includes short copy, full description, and specific offerings
 
 ### 4. **Team** (`/team`)
 - 8 team member profiles with:
@@ -99,17 +100,22 @@ McFord Advocates is a Kampala-based law firm specializing in corporate law, merg
 │   ├── layout.tsx              # Root layout with metadata
 │   ├── page.tsx                # Home page
 │   ├── about/page.tsx          # About page
-│   ├── services/page.tsx       # Services page
+│   ├── services/
+│   │   ├── page.tsx            # Practice areas hub
+│   │   └── [slug]/page.tsx     # Individual practice area pages
 │   ├── team/page.tsx           # Team page
 │   ├── contact/page.tsx        # Contact page
+│   ├── sitemap.ts              # Dynamic sitemap (includes practice pages)
 │   └── globals.css             # Global styles & design tokens
 ├── components/
 │   ├── navbar.tsx              # Navigation component
 │   ├── footer.tsx              # Footer component
 │   └── ui/                     # shadcn/ui components
 ├── lib/
+│   ├── site.ts                 # Firm config, practiceAreas, team, values
+│   ├── seo.ts                  # Metadata & JSON-LD helpers
 │   └── utils.ts                # Utility functions
-└── public/                     # Static assets
+└── public/                     # Static assets (llms.txt, images, etc.)
 ```
 
 ## 🚀 Getting Started
@@ -158,10 +164,10 @@ Navigation and layout automatically adapt for each breakpoint.
 - 4 key statistics highlighted
 
 ### Services Grid
-- 4-6 cards displaying practice areas
+- Cards for all practice areas (home page features a subset; full list on `/services`)
 - Icons for visual recognition
 - Hover effects for interactivity
-- Descriptions and benefits
+- Descriptions and links to individual practice pages
 
 ### Team Grid
 - Team member cards with photos
@@ -226,9 +232,9 @@ This website is created for McFord Advocates. All rights reserved.
 ## 📞 Contact
 
 **McFord Advocates**
-- 📍 Kampala, Uganda
-- 📧 info@mcfordadvocates.com
-- 📱 +256 (0) 773 000 000
+- 📍 AfriCourts, Plot 107 Buganda Road, Nakasero, Kampala, Uganda
+- 📧 info@mcfordadvocates.co.ug
+- 📱 +256 772 813 229 / +256 786 262 476
 
 ---
 

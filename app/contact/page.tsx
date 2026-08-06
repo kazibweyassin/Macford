@@ -23,8 +23,7 @@ export default function Contact() {
     }, 4000)
   }
 
-  const fieldClass =
-    'w-full px-4 py-3 border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground/70 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors'
+  const fieldClass = 'field-input'
 
   return (
     <>
@@ -142,7 +141,7 @@ export default function Contact() {
                     const Icon = item.icon
                     return (
                       <div key={item.title} className="flex gap-4">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-border bg-secondary">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-border bg-secondary">
                           <Icon className="h-4 w-4 text-accent" strokeWidth={1.5} />
                         </div>
                         <div>
@@ -160,8 +159,11 @@ export default function Contact() {
               </div>
 
               <div className="lg:col-span-8">
-                <div className="border border-border bg-card p-7 sm:p-10">
-                  <p className="eyebrow text-accent mb-3">Enquiry</p>
+                <div className="border border-border bg-card p-7 sm:p-10 shadow-[var(--shadow-soft)]">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="h-px w-6 bg-accent" />
+                    <p className="eyebrow text-accent">Enquiry</p>
+                  </div>
                   <h2 className="font-display text-3xl text-foreground mb-2">
                     Send a message
                   </h2>
@@ -242,7 +244,7 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full h-12 bg-primary text-[12px] font-semibold uppercase tracking-[0.14em] text-primary-foreground transition-colors hover:bg-ink-soft disabled:opacity-60"
+                        className="btn-primary w-full disabled:opacity-60 disabled:pointer-events-none"
                       >
                         {isLoading ? 'Sending…' : 'Send message'}
                       </button>
@@ -292,7 +294,7 @@ export default function Contact() {
               {[
                 {
                   q: 'How do I schedule a consultation?',
-                  a: 'Call either number, email info@mcfordadvocates.com, or use the form. We will confirm a time at AfriCourts or virtually.',
+                  a: `Call either number, email ${siteConfig.email}, or use the form. We will confirm a time at AfriCourts or virtually.`,
                 },
                 {
                   q: 'What should I bring to a first meeting?',
