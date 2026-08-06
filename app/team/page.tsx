@@ -129,6 +129,8 @@ export default function Team() {
                     focus: member.focus,
                     education: member.education,
                     linkedin: 'linkedin' in member ? member.linkedin : undefined,
+                    profilePdf:
+                      'profilePdf' in member ? member.profilePdf : undefined,
                   }}
                 />
               ))}

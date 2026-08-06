@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { siteConfig, practiceAreas } from '@/lib/site'
 
 export function Footer() {
@@ -15,13 +16,16 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10 mb-14">
           {/* Brand column */}
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-3.5 mb-6">
-              <div className="relative flex h-11 w-11 items-center justify-center border border-primary-foreground/10 bg-primary-foreground/[0.04]">
-                <span className="font-display text-xl font-semibold text-accent">
-                  M
-                </span>
-                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent/80" />
-              </div>
+            <div className="flex items-center gap-4 mb-6">
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/logo.png"
+                  alt="McFord Advocates logo"
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 object-contain"
+                />
+              </Link>
               <div>
                 <p className="font-display text-2xl font-semibold tracking-tight">
                   {siteConfig.name}

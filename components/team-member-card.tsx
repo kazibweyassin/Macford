@@ -1,9 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import Image from 'next/image'
-import { ExternalLink, ChevronDown } from 'lucide-react'
+import { ChevronDown, Download, ExternalLink } from 'lucide-react'
 import { cn } from '@/lib/utils'
+
+export type RepresentativeExperienceGroup = {
+  category: string
+  matters: readonly string[]
+}
 
 export type TeamMemberCardData = {
   name: string
@@ -16,22 +21,29 @@ export type TeamMemberCardData = {
   focus: readonly string[]
   education?: string
   linkedin?: string
+  representativeExperience?: readonly RepresentativeExperienceGroup[]
+  jurisdictions?: readonly string[]
+  /** Optional full CV / profile PDF (public path) */
+  profilePdf?: string
 }
 
 export function TeamMemberCard({ member }: { member: TeamMemberCardData }) {
   const [open, setOpen] = useState(false)
+  const contentId = useId()
+  const hasPdf = Boolean(member.profilePdf)
+  const overlayParas = member.bio.slice(0, 1)
 
   return (
     <article
       className={cn(
-        'group relative border border-border bg-card overflow-hidden transition-all duration-300',
+        'group relative overflow-hidden border border-border bg-card transition-all duration-300',
         open
-          ? 'shadow-[var(--shadow-lift)] border-accent/30'
+          ? 'border-accent/30 shadow-[var(--shadow-lift)]'
           : 'hover:border-accent/25 hover:shadow-[var(--shadow-soft)]',
       )}
     >
       {/* Photo */}
-      <div className="relative aspect-[4/5] bg-secondary overflow-hidden">
+      <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
         <Image
           src={member.image}
           alt={`${member.name}, ${member.title} at McFord Advocates`}
@@ -44,26 +56,28 @@ export function TeamMemberCard({ member }: { member: TeamMemberCardData }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
 
-        {/* Hover / open bio overlay on photo */}
+        {/* Hover overlay */}
         <div
           className={cn(
-            'absolute inset-0 flex flex-col justify-end p-5 sm:p-6 bg-ink/88 backdrop-blur-[2px] transition-all duration-400 ease-out',
+            'absolute inset-0 flex flex-col justify-end bg-ink/88 p-5 backdrop-blur-[2px] transition-all duration-300 ease-out sm:p-6',
             open
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto',
+              ? 'translate-y-0 opacity-100'
+              : 'pointer-events-none translate-y-3 opacity-0 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100',
           )}
         >
-          <p className="eyebrow text-accent mb-2">{member.experience}</p>
-          <div className="space-y-2.5 max-h-[55%] overflow-y-auto pr-1 scrollbar-thin">
-            {member.bio.slice(0, 2).map((para) => (
+          <p className="eyebrow mb-2 text-accent">{member.experience}</p>
+
+          <div className="max-h-[50%] space-y-2.5 overflow-y-auto pr-1">
+            {overlayParas.map((para) => (
               <p
                 key={para.slice(0, 40)}
-                className="text-[12px] sm:text-[13px] text-primary-foreground/85 font-light leading-relaxed"
+                className="text-[12px] font-light leading-relaxed text-primary-foreground/85 sm:text-[13px]"
               >
                 {para}
               </p>
             ))}
           </div>
+
           {member.focus.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-1.5">
               {member.focus.slice(0, 3).map((item) => (
@@ -78,79 +92,161 @@ export function TeamMemberCard({ member }: { member: TeamMemberCardData }) {
           )}
         </div>
 
-        {/* Name strip always visible at bottom of photo when not hovering */}
+        {/* Name strip */}
         <div
           className={cn(
-            'absolute bottom-0 left-0 right-0 p-5 sm:p-6 transition-opacity duration-300',
+            'absolute bottom-0 left-0 right-0 p-5 transition-opacity duration-300 sm:p-6',
             open ? 'opacity-0' : 'opacity-100 group-hover:opacity-0',
           )}
         >
-          <p className="eyebrow text-accent mb-1">{member.title}</p>
-          <h3 className="font-display text-2xl text-primary-foreground leading-tight">
+          <p className="eyebrow mb-1 text-accent">{member.title}</p>
+          <h3 className="font-display text-2xl leading-tight text-primary-foreground">
             {member.name}
           </h3>
         </div>
       </div>
 
       {/* Card body */}
-      <div className="p-6 border-t border-border">
-        <div className="flex items-start justify-between gap-3 mb-2">
-          <div>
-            <p className="eyebrow text-accent mb-1.5 sm:hidden">{member.title}</p>
-            <h3 className="font-display text-xl sm:text-2xl text-foreground leading-tight sm:hidden">
+      <div className="border-t border-border p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <p className="eyebrow mb-1.5 text-accent sm:hidden">{member.title}</p>
+            <h3 className="font-display text-xl leading-tight text-foreground sm:hidden sm:text-2xl">
               {member.name}
             </h3>
-            <p className="hidden sm:block text-xs uppercase tracking-[0.14em] text-muted-foreground">
-              {member.specialization}
-            </p>
-            <p className="sm:hidden mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">
+            <p className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground sm:mt-0">
               {member.specialization}
             </p>
           </div>
+
+          {/* Compact PDF download arrow */}
+          {hasPdf && member.profilePdf && (
+            <a
+              href={member.profilePdf}
+              download
+              aria-label={`Download ${member.name}'s full profile PDF`}
+              title="Download full profile PDF"
+              className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-border bg-secondary text-accent transition-colors hover:border-accent/50 hover:bg-accent hover:text-accent-foreground"
+            >
+              <Download className="h-4 w-4" />
+            </a>
+          )}
         </div>
 
-        <p className="text-sm text-muted-foreground font-light leading-relaxed mt-3">
+        <p className="mt-3 text-sm font-light leading-relaxed text-muted-foreground">
           {member.description}
         </p>
 
-        {/* Expandable full bio (better than hover-only on mobile) */}
+        {/* Full profile */}
         <div
+          id={contentId}
           className={cn(
-            'grid transition-all duration-400 ease-out',
-            open ? 'grid-rows-[1fr] mt-5 opacity-100' : 'grid-rows-[0fr] opacity-0',
+            'grid transition-all duration-300 ease-out',
+            open ? 'mt-5 grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
           )}
         >
           <div className="overflow-hidden">
-            <div className="space-y-3 border-t border-border pt-5">
-              {member.bio.map((para) => (
-                <p
-                  key={para.slice(0, 48)}
-                  className="text-sm text-muted-foreground font-light leading-relaxed"
-                >
-                  {para}
-                </p>
-              ))}
-              {member.education && (
-                <p className="text-xs text-muted-foreground/80 font-medium tracking-wide pt-1">
-                  {member.education}
-                </p>
+            <div className="space-y-6 border-t border-border pt-5">
+              {/* Biography */}
+              <section>
+                <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-foreground">
+                  Profile
+                </h4>
+                <div className="space-y-3">
+                  {member.bio.map((para) => (
+                    <p
+                      key={para.slice(0, 48)}
+                      className="text-sm font-light leading-relaxed text-muted-foreground"
+                    >
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              </section>
+
+              {/* Practice focus */}
+              {member.focus.length > 0 && (
+                <section>
+                  <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-foreground">
+                    Practice Focus
+                  </h4>
+                  <ul className="flex flex-wrap gap-2">
+                    {member.focus.map((item) => (
+                      <li
+                        key={item}
+                        className="border border-border bg-secondary px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-foreground/80"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
               )}
-              <ul className="flex flex-wrap gap-2 pt-1">
-                {member.focus.map((item) => (
-                  <li
-                    key={item}
-                    className="border border-border bg-secondary px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-foreground/80"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
+
+              {/* Representative experience */}
+              {member.representativeExperience &&
+                member.representativeExperience.length > 0 && (
+                  <section>
+                    <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-foreground">
+                      Representative Experience
+                    </h4>
+
+                    <div className="space-y-5">
+                      {member.representativeExperience.map((group) => (
+                        <div key={group.category}>
+                          <h5 className="mb-2 font-display text-base text-foreground">
+                            {group.category}
+                          </h5>
+                          <ul className="space-y-2">
+                            {group.matters.map((matter) => (
+                              <li
+                                key={matter}
+                                className="flex gap-2.5 text-sm font-light leading-relaxed text-muted-foreground"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className="mt-[0.6em] h-1 w-1 shrink-0 rounded-full bg-accent"
+                                />
+                                <span>{matter}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+              {/* Regional practice */}
+              {member.jurisdictions && member.jurisdictions.length > 0 && (
+                <section>
+                  <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-foreground">
+                    Regional Practice
+                  </h4>
+                  <p className="text-sm font-light leading-relaxed text-muted-foreground">
+                    Qualified to practise in {member.jurisdictions.join(', ')}.
+                  </p>
+                </section>
+              )}
+
+              {/* Education */}
+              {member.education && (
+                <section>
+                  <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-foreground">
+                    Education & Qualifications
+                  </h4>
+                  <p className="text-sm font-light leading-relaxed text-muted-foreground">
+                    {member.education}
+                  </p>
+                </section>
+              )}
+
               {member.linkedin && (
                 <a
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent hover:text-primary transition-colors pt-1"
+                  className="inline-flex items-center gap-1.5 pt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent transition-colors hover:text-primary"
                 >
                   LinkedIn profile
                   <ExternalLink className="h-3 w-3" />
@@ -162,9 +258,10 @@ export function TeamMemberCard({ member }: { member: TeamMemberCardData }) {
 
         <button
           type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="mt-5 inline-flex w-full items-center justify-center gap-2 border border-border bg-secondary/60 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground transition-colors hover:border-accent/40 hover:bg-secondary"
+          onClick={() => setOpen((value) => !value)}
+          className="mt-4 inline-flex w-full items-center justify-center gap-2 border border-border bg-secondary/60 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground transition-colors hover:border-accent/40 hover:bg-secondary"
           aria-expanded={open}
+          aria-controls={contentId}
         >
           {open ? 'Hide full profile' : 'View full profile'}
           <ChevronDown

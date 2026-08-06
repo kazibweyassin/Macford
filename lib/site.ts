@@ -294,6 +294,61 @@ export const firmValues = [
  */
 export const teamMembers = [
   {
+    name: 'Anan Mutabazi',
+    title: 'Founding Partner',
+    specialization: 'Corporate Finance, M&A & Project Finance',
+    experience: '14+ years · Uganda, Kenya, Rwanda & Tanzania',
+    image: '/team/anan.jpeg',
+    description:
+      'Founding Partner with more than 14 years of experience advising governments, multinational corporations, financial institutions, and investors on complex corporate finance, project finance, M&A, and cross-border commercial transactions across East Africa.',
+    bio: [
+      'Anan Mutabazi is the Founding Partner of McFord Advocates. He has more than 14 years of experience advising governments, multinational corporations, financial institutions, investors, and private companies on complex transactions across East Africa.',
+      'His practice focuses on corporate finance, banking and finance, project finance, mergers and acquisitions, infrastructure, energy, private equity, and cross-border commercial transactions. He combines extensive legal knowledge with strong financial and commercial insight to deliver practical, business-focused solutions.',
+      'Qualified to practise in Uganda, Kenya, Rwanda, and Tanzania, Anan provides coordinated cross-border legal counsel on transactions involving multiple East African jurisdictions.',
+    ],
+    focus: [
+      'Mergers & acquisitions',
+      'Corporate finance & banking',
+      'Project finance & infrastructure',
+      'Energy & power',
+      'Private equity',
+      'Cross-border commercial transactions',
+    ],
+    representativeExperience: [
+      {
+        category: 'Mergers & Acquisitions',
+        matters: [
+          'Advised Old Mutual on its acquisition of UAP Insurance.',
+          'Advised Atlas Mara Co-Invest on the acquisition of Banque Populaire du Rwanda (BPR).',
+          'Advised Broad Band Service Corporation on the acquisition of R-Switch.',
+        ],
+      },
+      {
+        category: 'Telecommunications & Market Entry',
+        matters: [
+          'Advised Africa Olley Services on the establishment of Korea Telecom operations in Rwanda and Zambia.',
+        ],
+      },
+      {
+        category: 'Infrastructure & Project Finance',
+        matters: [
+          'Advised on the pre-financing and off-take arrangements for the Standard Gauge Railway, one of East Africa’s flagship infrastructure projects.',
+        ],
+      },
+      {
+        category: 'Energy & Power',
+        matters: [
+          'Acted as legal counsel to Symbion Power Africa.',
+          'Acted as legal counsel to the Global Village Energy Partnership (GVEP).',
+        ],
+      },
+    ],
+    jurisdictions: ['Uganda', 'Kenya', 'Rwanda', 'Tanzania'],
+    education:
+      'LL.M., University of London; Master’s Degree in Corporate Finance, State University of New York; Postgraduate Diploma in Legal Practice, Kenya School of Law; law degrees from Uganda and Kenya',
+    profilePdf: '/team/anan-mutabazi-profile.pdf',
+  },
+  {
     name: 'Ampaire Tumwebaze',
     title: 'Managing Partner',
     specialization: 'Corporate, Commercial & Strategy',
@@ -314,29 +369,6 @@ export const teamMembers = [
     ],
     education: 'Advocate of the High Court of Uganda',
     linkedin: 'https://ug.linkedin.com/in/ampaire-tumwebaze-61b300141',
-  },
-  {
-    name: 'Anan Mutabazi',
-    title: 'Managing Partner',
-    specialization: 'Corporate, Banking & Commercial',
-    experience: 'Managing Partner · Senior Counsel',
-    image: '/team/anan.jpeg',
-    description:
-      'Managing Partner and senior corporate counsel with deep experience in banking, corporate, finance, and complex commercial matters.',
-    bio: [
-      'Counsel Anan Mutabazi is a Managing Partner at McFord Advocates and a prominent Ugandan corporate lawyer. He holds a Master of Laws (LLM) in Banking, Corporate, Finance, and Securities Law from the University at Albany, SUNY, and is recognised as Senior Counsel.',
-      'His practice focuses on corporate affairs, commercial counsel, and high-stakes advisory work. He has served as legal counsel in significant matters, including representing Nalongo Estates Ltd (owned by Sarah Kizito and Godfrey Nyakana) in high-profile parliamentary committee hearings (COSASE) regarding the Centenary Park land lease dispute.',
-      'Beyond private practice, he has served as Head of Corporate Affairs at Weli Travel, overseeing corporate relations, executive leadership messaging, and client relations. He combines courtroom and boardroom experience with a commitment to clear leadership and community engagement in Kampala.',
-    ],
-    focus: [
-      'Corporate & commercial law',
-      'Banking, finance & securities',
-      'Complex commercial advisory',
-      'Land & high-profile disputes',
-      'Corporate affairs & governance',
-    ],
-    education:
-      'LLM Banking, Corporate, Finance & Securities Law, University at Albany, SUNY; Senior Counsel',
   },
   {
     name: 'Christopher Mwesigye',
@@ -428,23 +460,24 @@ export const teamMembers = [
     education: 'Legal professional',
   },
   {
-    name: 'Legal Associate',
-    title: 'Legal Associate',
-    specialization: 'General Practice Support',
-    experience: 'Associate',
+    name: 'Rwangoga Enoth',
+    title: 'Corporate Support',
+    specialization: 'Corporate Support',
+    experience: 'Junior Associate',
     image: '/team/advocate-03.jpg',
     description:
-      'Supports general practice and commercial matters with careful research and client file coordination.',
+      'Rwangoga Enoth is a commercially focused legal practitioner supporting the firm’s corporate and transactional matters.',
     bio: [
-      'A Legal Associate at McFord Advocates assisting on general practice and commercial matters, with emphasis on accurate research and orderly client file coordination.',
-      'Supports advocates on documentation, correspondence, and the practical steps that keep matters moving, from first instructions through to completion.',
-      'Contact McFord Advocates for an introduction aligned to your matter type. The firm can update this profile with a full name and LinkedIn details when confirmed.',
+      'Rwangoga Enoth is a commercially focused legal practitioner and Junior Associate at McFord Advocates, where he advises on a range of complex legal and transactional matters with particular emphasis on delivering strategic, business-oriented solutions.',
+      'Enoth holds a Postgraduate Diploma in Legal Practice from the Law Development Centre and a Bachelor of Laws (LL.B) from Nkumba University. His academic and professional training equips him with a strong grounding in legal analysis, regulatory interpretation, and dispute management within both domestic and evolving cross-border contexts.',
+      'His practice spans corporate and commercial law, real estate and conveyancing, infrastructure and telecommunications, and alternative dispute resolution. He regularly supports clients in structuring transactions, conducting legal due diligence, and navigating regulatory frameworks, with a clear focus on risk allocation, compliance, and value preservation. He approaches legal challenges with a strong appreciation of commercial realities, ensuring that legal strategies are aligned with clients’ broader business objectives.',
+      'He has a developing interest in infrastructure development and telecommunications law, particularly in the context of emerging markets, where legal frameworks intersect with investment, technology, and public-private partnerships. His work reflects a commitment to facilitating sustainable development and enabling efficient capital deployment.',
     ],
     focus: [
-      'General practice support',
-      'Research & file management',
-      'Client coordination',
+      'Corporate & commercial transactions',
+      'Due diligence & compliance',
+      'Real estate & conveyancing',
     ],
-    education: 'Legal professional',
+    education: 'LL.B, Nkumba University; Postgraduate Diploma in Legal Practice, Law Development Centre',
   },
 ] as const
