@@ -1,241 +1,114 @@
-# McFord Advocates - Professional Law Firm Website
+---
 
-A modern, responsive website for McFord Advocates, Uganda's leading corporate law firm established in 2015.
-
-## 🌐 Website Overview
-
-McFord Advocates is a Kampala-based law firm specialising in mineral law and precious metal trade, corporate law, mergers & acquisitions, banking and finance, intellectual property, commercial law, and employment law.
-
-## 📄 Pages
-
-### 1. **Home** (`/`)
-- Hero section with compelling headline and CTA buttons
-- Firm statistics (10+ years experience, 500+ clients, 20+ experts, 98% satisfaction)
-- Overview of practice areas with service cards
-- Why Choose Us section highlighting firm strengths
-- Call-to-action section encouraging consultations
-
-### 2. **About** (`/about`)
-- Company story and history (founded 2015)
-- Mission, Vision, and Values statements
-- Comprehensive expertise across all practice categories
-- Key achievements and milestones
-- Detailed information about the firm's credentials
-
-### 3. **Services / Practice Areas** (`/services`)
-- Hub page plus dedicated pages for each practice area (`/services/[slug]`)
-- **7 practice areas** (source of truth: `lib/site.ts` → `practiceAreas`):
-  1. **Mineral Law & Precious Metal Trade** (`mineral-law`) - mining licences, gold/precious metal trade, export compliance
-  2. **Corporate Law** (`corporate-law`) - formation, governance, compliance
-  3. **Mergers & Acquisitions** (`mergers-acquisitions`) - structuring, due diligence, execution
-  4. **Banking & Finance** (`banking-finance`) - lending, securities, project finance
-  5. **Intellectual Property** (`intellectual-property`) - trademarks, patents, copyright
-  6. **Commercial Law** (`commercial-law`) - contracts, disputes, international trade
-  7. **Employment Law** (`employment-law`) - contracts, policies, labour compliance
-- Benefits of choosing McFord Advocates
-- Each practice includes short copy, full description, and specific offerings
-
-### 4. **Team** (`/team`)
-- 8 team member profiles with:
-  - Name, title, specialization
-  - Years of experience
-  - Professional description
-- Team statistics (20+ professionals, 150+ combined years experience)
-- Firm culture and values (6 core values)
-- Professional development initiatives
-
-### 5. **Contact** (`/contact`)
-- Contact form with fields for:
-  - Name, email, phone
-  - Company name
-  - Service of interest (dropdown)
-  - Message
-- Contact information:
-  - Location: Kampala, Uganda
-  - Phone, email, business hours
-- FAQ section addressing common questions
-
-## 🎨 Design
-
-### Color Scheme
-- **Primary**: Deep Navy Blue (`oklch(0.28 0.15 250)`) - Professional authority
-- **Accent**: Gold/Amber (`oklch(0.72 0.2 55)`) - Premium elegance
-- **Background**: Off-white (`oklch(0.98 0.001 0)`) - Clean, professional
-- **Text**: Dark Navy (`oklch(0.15 0.01 220)`) - High contrast, readability
-
-### Typography
-- Clean, professional typography with Geist font family
-- Hierarchical text sizing for clear information architecture
-- Line heights optimized for readability (1.4-1.6)
-
-### Layout
-- Fully responsive design (mobile-first approach)
-- Maximum width container for optimal readability
-- Grid-based layout system
-- Smooth transitions and hover effects
-
-## 🚀 Features
-
-✅ **Responsive Design** - Works perfectly on desktop, tablet, and mobile
-✅ **Navigation Menu** - Sticky navigation with mobile hamburger menu
-✅ **Forms** - Functional contact form with validation
-✅ **Icons** - Lucide React icons throughout for visual clarity
-✅ **Accessibility** - Semantic HTML, proper ARIA labels, SR-only text
-✅ **Performance** - Optimized images, efficient CSS, fast load times
-✅ **SEO** - Meta tags, proper heading structure, descriptive content
-
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 16 (App Router)
-- **Styling**: Tailwind CSS v4 with custom design tokens
-- **Components**: shadcn/ui components
-- **Icons**: Lucide React
-- **Language**: TypeScript
-- **Package Manager**: pnpm
-
-## 📁 Project Structure
-
-```
-├── app/
-│   ├── layout.tsx              # Root layout with metadata
-│   ├── page.tsx                # Home page
-│   ├── about/page.tsx          # About page
-│   ├── services/
-│   │   ├── page.tsx            # Practice areas hub
-│   │   └── [slug]/page.tsx     # Individual practice area pages
-│   ├── team/page.tsx           # Team page
-│   ├── contact/page.tsx        # Contact page
-│   ├── sitemap.ts              # Dynamic sitemap (includes practice pages)
-│   └── globals.css             # Global styles & design tokens
-├── components/
-│   ├── navbar.tsx              # Navigation component
-│   ├── footer.tsx              # Footer component
-│   └── ui/                     # shadcn/ui components
-├── lib/
-│   ├── site.ts                 # Firm config, practiceAreas, team, values
-│   ├── seo.ts                  # Metadata & JSON-LD helpers
-│   └── utils.ts                # Utility functions
-└── public/                     # Static assets (llms.txt, images, etc.)
-```
-
-## 🚀 Getting Started
-
-### Installation
-
-1. **Install dependencies**:
-   ```bash
-   pnpm install
-   ```
-
-2. **Run development server**:
-   ```bash
-   pnpm dev
-   ```
-
-3. **Open in browser**:
-   Navigate to `http://localhost:3000`
-
-### Build for Production
-
-```bash
-pnpm build
-pnpm start
-```
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: < 640px
-- **Tablet**: 640px - 1024px
-- **Desktop**: > 1024px
-
-Navigation and layout automatically adapt for each breakpoint.
-
-## 🎯 Key Sections
-
-### Hero Section
-- Attention-grabbing headline
-- Compelling value proposition
-- Dual CTA buttons (primary & secondary)
-- Hero illustration
-
-### Stats Section
-- Quick impact metrics
-- Build trust and credibility
-- 4 key statistics highlighted
-
-### Services Grid
-- Cards for all practice areas (home page features a subset; full list on `/services`)
-- Icons for visual recognition
-- Hover effects for interactivity
-- Descriptions and links to individual practice pages
-
-### Team Grid
-- Team member cards with photos
-- Specializations and experience
-- Responsive layout (1-4 columns)
-
-### Forms
-- Clean, intuitive form design
-- Input validation
-- Success/error states
-- Accessible form labels
-
-## 🔧 Customization
-
-### Colors
-Edit design tokens in `app/globals.css`:
-```css
-:root {
-  --primary: oklch(0.28 0.15 250);      /* Primary brand color */
-  --accent: oklch(0.72 0.2 55);         /* Accent color */
-  --background: oklch(0.98 0.001 0);    /* Background */
-}
-```
-
-### Fonts
-Modify fonts in `app/layout.tsx` by importing different Google Fonts or local fonts.
-
-### Content
-Update text content directly in component files. Dynamic content can be pulled from a CMS or database.
-
-## ♿ Accessibility
-
-- Semantic HTML elements (`<header>`, `<main>`, `<footer>`, `<nav>`)
-- ARIA labels and roles where needed
-- Alt text for all meaningful images
-- Keyboard navigation support
-- Focus indicators for interactive elements
-- Screen reader optimized text
-
-## 📊 SEO
-
-- Unique title and description for each page
-- Proper heading hierarchy (H1 → H6)
-- Descriptive link text
-- Meta tags for social sharing
-- Structured content for search engines
-
-## 🚢 Deployment
-
-Deploy to Vercel with a single click:
-
-1. Push code to GitHub
-2. Connect repository to Vercel
-3. Vercel automatically detects Next.js and deploys
-
-Or use the v0 publish feature to deploy directly.
-
-## 📝 License
-
-This website is created for McFord Advocates. All rights reserved.
-
-## 📞 Contact
-
-**McFord Advocates**
-- 📍 AfriCourts, Plot 107 Buganda Road, Nakasero, Kampala, Uganda
-- 📧 info@mcfordadvocates.co.ug
-- 📱 +256 772 813 229 / +256 786 262 476
+McFord Advocates – Scope of Legal Services
 
 ---
 
-*Built with v0 - Modern web development made simple.*
+Headline: Comprehensive Commercial Counsel. Specialist Expertise in Mining, Finance, and Corporate Law.
+
+Introduction:
+McFord Advocates is a full-service commercial law firm built on a foundation of technical excellence, commercial pragmatism, and unwavering client advocacy. We serve corporations, financial institutions, mining houses, investors, and high-net-worth individuals across the full spectrum of business law.
+
+While we are widely recognized for our flagship practice in Mineral Law and Precious Metal Trade, our expertise extends deep into corporate finance, insolvency, intellectual property, real estate, and commercial dispute resolution. We do not merely advise—we structure, protect, recover, and execute.
+
+---
+
+1. MINERAL LAW & PRECIOUS METAL TRADE
+
+Our flagship practice. We engineer secure, compliant, and profitable transactions in gold and other precious minerals.
+
+· Due Diligence & Counterparty Vetting: Comprehensive background checks on buyers, sellers, and intermediaries; verification of mining licenses, certificates of origin, and chain of custody to eliminate fraud and conflict-mineral liability.
+· Export Documentation & Regulatory Authentication: End-to-end management and legal authentication of export permits, customs declarations, certificates of analysis, and phytosanitary certificates to ensure seamless cross-border clearance.
+· Supply Contract Management: Drafting, negotiation, and ongoing administration of offtake agreements, supply contracts, and logistics agreements—covering pricing mechanisms, quality specifications, delivery terms, force majeure, and dispute resolution clauses.
+· Escrow Account Management: Acting as a neutral fiduciary to structure and manage escrow payment models, ensuring that funds are released only upon satisfaction of contractually agreed conditions (e.g., verified assay results, shipping confirmation, or delivery milestones).
+· Breach & Asset Recovery: Swift legal intervention in cases of default, misrepresentation, or non-delivery. We manage recovery proceedings, attachment orders, and cross-border enforcement to reclaim capital and physical assets with minimal loss.
+· Regulatory Compliance: Advisory on mining codes, extraction licenses, environmental obligations, and host-government community agreements.
+
+---
+
+2. PROJECT FINANCE & CORPORATE FINANCE
+
+Structuring the capital architecture for growth, infrastructure, and industrial projects.
+
+· Project Finance Structuring: Tailored legal frameworks for large-scale projects—particularly in mining, energy, and infrastructure. We design concession agreements, off-take structures, and security packages that satisfy lenders and equity investors alike.
+· Corporate Finance Advisory: Legal support for mergers and acquisitions (M&A), equity and debt capital raising, private placements, joint ventures, and corporate reorganizations.
+· Structured Commodity Finance: Complex financing solutions secured against physical commodities, stockpiles, receivables, or future production. We draft and negotiate borrowing-base facilities, pre-export finance agreements, and warehouse receipt financing.
+· Security Structuring: Perfection of collateral, including charges over movable and immovable assets, share pledges, and guarantees.
+· Regulatory Approvals: Navigating central bank, exchange control, and competition authority clearances for cross-border capital flows.
+
+---
+
+3. BANKING LAW & DEBT RECOVERIES
+
+Protecting the interests of financial institutions and corporate lenders.
+
+· Banking Regulatory Compliance: Advisory on prudential guidelines, anti-money laundering (AML) obligations, and banking sector regulations.
+· Loan Portfolio Enforcement: Legal recovery of non-performing loans (NPLs), including demand letters, restructuring negotiations, and enforcement of securities.
+· High-Value Debt Recovery: Aggressive litigation and pre-litigation strategies for recovery of commercial debts, including attachment of assets, garnishee orders, and writs of execution.
+· Insolvency-Driven Recoveries: Representation of secured and unsecured creditors in insolvency proceedings to maximize dividend payouts.
+· Reconstruction of Distressed Loans: Advising banks on loan restructuring, refinancing, and rescheduling arrangements.
+
+---
+
+4. INSOLVENCY LAW & BUSINESS RESCUE
+
+Maximizing value in financial distress—whether rescuing a business or recovering for creditors.
+
+· Corporate Insolvency Proceedings: Administration of liquidation, sequestration, and winding-up petitions for both companies and individuals.
+· Business Rescue & Restructuring: Structuring turnaround strategies, negotiating with creditors, and drafting business rescue plans under applicable insolvency legislation.
+· Creditor Representation: Protecting the interests of secured, unsecured, and preferential creditors throughout insolvency proceedings, including voting on rescue plans and challenging improper distributions.
+· Cross-Border Insolvency: Advisory on recognition of foreign proceedings, asset tracing across jurisdictions, and coordination with international insolvency practitioners.
+· Director & Officer Liability: Advising company directors on fiduciary duties during periods of financial distress to avoid personal liability and wrongful trading claims.
+
+---
+
+5. INTELLECTUAL PROPERTY LAW
+
+Safeguarding the intangible assets that drive competitive advantage.
+
+· Registration & Prosecution: Filing and prosecution of trademarks, patents, industrial designs, and copyrights with relevant registries.
+· IP Portfolio Management: Strategic management of IP portfolios, including renewal tracking, licensing, and assignment agreements.
+· Trade Secrets & Confidentiality: Drafting of non-disclosure agreements (NDAs), confidentiality clauses, and internal policies to protect proprietary know-how.
+· IP Litigation & Enforcement: Representation in infringement actions, passing-off claims, and opposition/cancellation proceedings before courts and administrative tribunals.
+· Commercialization of IP: Structuring technology transfer agreements, franchising, merchandising, and royalty collection mechanisms.
+
+---
+
+6. REAL ESTATE LAW & ADMINISTRATION
+
+Comprehensive legal solutions for property owners, developers, and investors.
+
+· Property Acquisitions & Dispositions: Drafting and negotiation of sale/purchase agreements, conducting title searches, and ensuring clean transfer of ownership.
+· Leasing & Tenancy: Preparation of commercial, industrial, and residential leases; handling of rent reviews, renewals, and eviction proceedings where necessary.
+· Real Estate Development: Legal advisory on zoning, planning permissions, subdivision, construction contracts, and developer–contractor agreements.
+· Property Portfolio Administration: Ongoing legal management of large property portfolios, including compliance with rating and taxation obligations, and management of easements/servitudes.
+· Due Diligence for Secured Lending: Title verification and reporting for properties offered as collateral in financing transactions.
+
+---
+
+7. COMMERCIAL LITIGATION & DISPUTE RESOLUTION
+
+Decisive advocacy when business disputes escalate.
+
+· Contractual Disputes: Representation in breach of contract claims, including supply chain defaults, service level failures, and termination disputes.
+· Shareholder & Partnership Conflicts: Resolution of deadlock situations, oppression claims, dividend disputes, and buy-out negotiations.
+· Arbitration & Mediation: Skilled representation in domestic and international arbitrations (including ICC, LCIA, and regional centres), as well as facilitated mediations.
+· Enforcement of Judgments & Awards: Domestication and enforcement of foreign judgments and arbitral awards through local courts.
+· Urgent Interdictory Relief: Seeking and defending against urgent court orders, including asset freezing orders, anti-dissipation orders, and injunctions to preserve the status quo.
+
+---
+
+Our Integrated Advantage
+
+At McFord Advocates, we recognize that commercial problems rarely fit into a single legal silo. A mining dispute often implicates trade finance, insolvency risks may arise from a failed real estate development, and an IP infringement can threaten a corporate finance transaction.
+
+Our teams collaborate across practice areas to deliver cohesive, commercially astute solutions that address the full complexity of your matter. We combine deep sector knowledge with technical legal rigor, ensuring that you receive advice that is not only legally sound but strategically executable.
+The 
+
+---
+
+Meta Description (for SEO):
+"McFord Advocates: Full-scope commercial law firm specializing in Mineral Law, Project Finance, Banking, Insolvency, Intellectual Property, Real Estate, and Commercial Litigation. Trusted counsel for complex transactions and recoveries."
+
+---
+

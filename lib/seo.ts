@@ -225,14 +225,14 @@ export function organizationJsonLd() {
           })),
         },
         employee: teamMembers
-          .filter((m) => m.name !== 'Advocate')
+          .filter((m) => m.name !== 'Legal Associate')
           .map((member) => ({
             '@type': 'Person',
             name: member.name,
             jobTitle: member.title,
             worksFor: { '@id': `${baseUrl}/#organization` },
             description: member.description,
-            knowsAbout: member.specialization,
+            knowsAbout: [...member.focus],
             image: absoluteUrl(member.image),
           })),
       },
@@ -372,14 +372,17 @@ export function teamJsonLd() {
         '@type': 'Person',
         name: member.name,
         jobTitle: member.title,
-        description: member.description,
+        description: member.bio?.join(' ') ?? member.description,
+        knowsAbout: member.focus ?? member.specialization,
+        image: absoluteUrl(member.image),
         worksFor: {
           '@type': 'LegalService',
           name: siteConfig.name,
           url: baseUrl,
         },
-        knowsAbout: member.specialization,
-        image: absoluteUrl(member.image),
+        ...('linkedin' in member && member.linkedin
+          ? { sameAs: [member.linkedin] }
+          : {}),
       },
     })),
   }

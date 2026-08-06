@@ -288,41 +288,140 @@ export const firmValues = [
   },
 ] as const
 
+/**
+ * Team profiles. Bios expand public LinkedIn role cues (where available)
+ * with firm-aligned practice narrative. Update names/photos in /public/team.
+ */
 export const teamMembers = [
   {
     name: 'Ampaire Tumwebaze',
     title: 'Managing Partner',
     specialization: 'Corporate, Commercial & Strategy',
-    experience: 'Senior counsel',
+    experience: 'Managing Partner since 2016',
     image: '/team/ampaire-tumwebaze.jpg',
     description:
-      'Leads the firm with a focus on corporate advisory, commercial transactions, and building lasting client relationships across Uganda and the region.',
+      'Leads McFord Advocates with a focus on corporate advisory, commercial transactions, and lasting client relationships across Uganda and the region.',
+    bio: [
+      'Ampaire Tumwebaze is Managing Partner of McFord Advocates. He has led the firm since 2016, building a partner-led practice that combines commercial judgment with rigorous legal work for companies, investors, and institutions.',
+      'His work centres on corporate and commercial strategy: company structures, transactions, governance, and the practical decisions clients face when growing, financing, or reorganising a business in Uganda.',
+      'Clients value his accessibility, clear advice, and insistence that every matter has a senior owner from first instruction through to closing or resolution. He is based at the firm’s chambers at AfriCourts, Buganda Road, Kampala.',
+    ],
+    focus: [
+      'Corporate advisory & governance',
+      'Commercial transactions',
+      'Client strategy & firm leadership',
+      'Cross-border commercial matters',
+    ],
+    education: 'Advocate of the High Court of Uganda',
+    linkedin: 'https://ug.linkedin.com/in/ampaire-tumwebaze-61b300141',
   },
   {
-    name: 'Mwesigye Christopher',
-    title: 'Advocate',
-    specialization: 'Litigation & Commercial Law',
-    experience: 'Advocate',
-    image: '/team/mwesigye-christopher.jpg',
+    name: 'Christopher Mwesigye',
+    title: 'Associate Partner',
+    specialization: 'Litigation & Dispute Resolution',
+    experience: 'Head of Litigation & Administration',
+    image: '/chris.jpg',
     description:
-      'Handles commercial disputes and day-to-day client advisory with a practical, results-oriented approach.',
+      'Associate Partner and head of Litigation and Dispute Resolution, with a practice focused on civil, commercial, and land litigation, plus regulatory compliance.',
+    bio: [
+      'Christopher Mwesigye is an Associate Partner at McFord Advocates. He is the head of the firm’s Litigation and Dispute Resolution Department as well as Administration. His practice focuses mainly on civil, commercial, and land litigation. Beyond litigation, Christopher advises on statutory and regulatory compliance with key government institutions including URA and URSB.',
+      'Christopher brings significant litigation experience before the Courts of Judicature and various tribunals, and is committed to early resolution through mediation and ADR wherever that serves the client’s objectives.',
+      'He holds an LL.B (Hons) from Uganda Christian University and a Postgraduate Diploma in Legal Practice from the Law Development Centre. He also holds a Certificate in the Leaders’ Mentorship Program from the Africa Leadership Institute. He is an Advocate of the High Court of Uganda and a member of the Uganda Law Society and the East Africa Law Society.',
+    ],
+    focus: [
+      'Corporate and commercial law',
+      'Land and civil law',
+      'Litigation and dispute resolution',
+      'URA & URSB compliance advisory',
+      'Mediation & ADR',
+    ],
+    education:
+      'LL.B (Hons), Uganda Christian University; Postgraduate Diploma in Legal Practice, Law Development Centre',
+    linkedin: 'https://ug.linkedin.com/in/mwesigye-christopher-aaab20187',
   },
   {
     name: 'Teddy Namukwaya',
     title: 'Legal Associate',
     specialization: 'Corporate & General Practice',
-    experience: 'Associate',
+    experience: 'Legal Associate',
     image: '/team/teddy-namukwaya.jpg',
     description:
-      'Supports corporate and commercial matters with careful research, documentation, and client coordination.',
+      'Legal Associate supporting corporate and commercial matters with careful research, documentation, and client coordination.',
+    bio: [
+      'Teddy Namukwaya is a Legal Associate at McFord Advocates. She supports corporate and general practice work with meticulous research, drafting, and coordination across client matters.',
+      'Her day-to-day role includes company and commercial documentation, due diligence support, compliance filings, and preparing materials that help senior counsel move transactions and advisory work forward with precision.',
+      'She trained at the Law Development Centre and is committed to clear communication and disciplined file management so clients receive timely, well-organised support from the team.',
+    ],
+    focus: [
+      'Corporate documentation',
+      'Commercial research & drafting',
+      'Due diligence support',
+      'Client coordination',
+    ],
+    education: 'Law Development Centre',
+    linkedin: 'https://ug.linkedin.com/in/teddy-namukwaya-4710b525b',
   },
   {
-    name: 'Advocate',
-    title: 'Managing Partner',
-    specialization: 'Real Estate & Commercial',
-    experience: 'Managing Partner',
-    image: '/team/advocate-01.jpg',
+    name: 'Mwesigwa Joshua Warren',
+    title: 'Junior Associate',
+    specialization: 'Corporate, Commercial & Regulatory',
+    experience: 'Legal Associate',
+    image: '/team/warren.jpeg',
     description:
-      'Managing Partner focusing on real estate and commercial law - property transactions, conveyancing, leases, and commercial contracts.',
+      'Legal Associate spanning drafting, compliance review, contract analysis, and advisory work across corporate, commercial, and regulatory matters.',
+    bio: [
+      'Mwesigwa Joshua Warren is a Legal Associate at McFord Advocates, where his practice spans legal drafting, compliance review, contract analysis, and advisory work for a diverse client base across corporate, commercial, and regulatory matters. He conducts in-depth legal research and due diligence for mergers, acquisitions, joint ventures, and other commercial transactions, and regularly advises clients on their legal rights, obligations, and risk exposure, translating complex statutory and case law analysis into practical, actionable guidance.',
+      'He drafts and reviews a wide range of legal instruments, including commercial contracts, pleadings, motions, board resolutions, and formal legal opinions, and has particular experience navigating land and property law, regulatory licensing, and multi-jurisdictional transactions. Warren is known for his meticulous attention to detail, his ability to work effectively under pressure, and his commitment to delivering accurate, well-reasoned legal solutions within tight deadlines.',
+      'Before joining McFord Advocates, he worked as a Legal Research Assistant at Karungi and Partners Advocates and Solicitors in Kampala. He holds a Bachelor of Laws (LL.B Hons) from Uganda Christian University, Mukono.',
+    ],
+    focus: [
+      'Legal research & analysis',
+      'Contract drafting & review',
+      'Due diligence',
+      'Regulatory compliance',
+      'Litigation support',
+      'Negotiation & dispute resolution',
+    ],
+    education: 'LL.B (Hons), Uganda Christian University, Mukono',
+  },
+  {
+    name: 'Legal Associate',
+    title: 'Legal Associate',
+    specialization: 'Corporate Support',
+    experience: 'Associate',
+    image: '/team/advocate-02.jpg',
+    description:
+      'Supports the firm’s corporate and commercial practice with research, drafting, and matter coordination.',
+    bio: [
+      'A Legal Associate at McFord Advocates supporting the corporate and commercial practice with research, drafting, and matter coordination under partner supervision.',
+      'Work includes assisting on company documentation, commercial agreements, and the preparation of materials for client meetings, filings, and transactions.',
+      'Please contact the firm for a matter-specific introduction to the right lawyer on your file. Full profile details can be updated by the firm as biographies are finalised.',
+    ],
+    focus: [
+      'Corporate support',
+      'Commercial drafting assistance',
+      'Research & documentation',
+    ],
+    education: 'Legal professional',
+  },
+  {
+    name: 'Legal Associate',
+    title: 'Legal Associate',
+    specialization: 'General Practice Support',
+    experience: 'Associate',
+    image: '/team/advocate-03.jpg',
+    description:
+      'Supports general practice and commercial matters with careful research and client file coordination.',
+    bio: [
+      'A Legal Associate at McFord Advocates assisting on general practice and commercial matters, with emphasis on accurate research and orderly client file coordination.',
+      'Supports advocates on documentation, correspondence, and the practical steps that keep matters moving, from first instructions through to completion.',
+      'Contact McFord Advocates for an introduction aligned to your matter type. The firm can update this profile with a full name and LinkedIn details when confirmed.',
+    ],
+    focus: [
+      'General practice support',
+      'Research & file management',
+      'Client coordination',
+    ],
+    education: 'Legal professional',
   },
 ] as const

@@ -4,7 +4,7 @@ import { Footer } from '@/components/footer'
 import { PageHero } from '@/components/ui/page-hero'
 import { SectionHeader } from '@/components/ui/section-header'
 import { JsonLd } from '@/components/json-ld'
-import Image from 'next/image'
+import { TeamMemberCard } from '@/components/team-member-card'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { siteConfig, teamMembers, firmValues } from '@/lib/site'
@@ -12,12 +12,14 @@ import { breadcrumbJsonLd, buildPageMetadata, teamJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Our Lawyers',
-  description: `Meet the advocates and legal professionals at ${siteConfig.name}, AfriCourts, Kampala. Partner-led commercial counsel for Uganda and East Africa.`,
+  description: `Meet the advocates and legal professionals at ${siteConfig.name}, AfriCourts, Kampala. Partner-led commercial and mineral law counsel for Uganda and East Africa.`,
   path: '/team',
   keywords: [
     'McFord Advocates lawyers',
+    'Ampaire Tumwebaze',
     'advocates Kampala',
     'corporate lawyers Uganda team',
+    'mining lawyer Kampala team',
     ...siteConfig.keywords.slice(0, 6),
   ],
 })
@@ -38,7 +40,7 @@ export default function Team() {
         <PageHero
           eyebrow="Our Lawyers"
           title="The people behind the counsel"
-          description="A focused team of advocates committed to rigorous, client-centred legal work for businesses in Uganda and beyond."
+          description="A focused team of advocates committed to rigorous, client-centred legal work for businesses in Uganda and beyond. Hover a photo or open a full profile to read more."
           image="https://images.unsplash.com/photo-1425421669292-0c3da3b8f529?auto=format&fit=crop&w=1920&q=80"
           imageAlt="Professional team and business counsel"
           crumbs={[
@@ -60,7 +62,7 @@ export default function Team() {
                   <p>
                     Matters at {siteConfig.name} are staffed for quality and
                     efficiency. Senior lawyers set strategy; associates deliver
-                    precise research, drafting, and coordination - so clients get
+                    precise research, drafting, and coordination so clients get
                     depth without unnecessary cost.
                   </p>
                   <p>
@@ -109,37 +111,26 @@ export default function Team() {
             <SectionHeader
               eyebrow="Leadership"
               title="Meet the team"
+              description="Hover a portrait for a quick bio, or open the full profile for focus areas and background."
               align="center"
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
               {teamMembers.map((member) => (
-                <article
+                <TeamMemberCard
                   key={member.image}
-                  className="card-lift group border border-border bg-card overflow-hidden"
-                >
-                  <div className="relative aspect-[4/5] bg-secondary overflow-hidden">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/50 to-transparent opacity-80" />
-                  </div>
-                  <div className="p-6 border-t border-border">
-                    <p className="eyebrow text-accent mb-2">{member.title}</p>
-                    <h3 className="font-display text-2xl text-foreground mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground mb-3">
-                      {member.specialization}
-                    </p>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                      {member.description}
-                    </p>
-                  </div>
-                </article>
+                  member={{
+                    name: member.name,
+                    title: member.title,
+                    specialization: member.specialization,
+                    experience: member.experience,
+                    image: member.image,
+                    description: member.description,
+                    bio: member.bio,
+                    focus: member.focus,
+                    education: member.education,
+                    linkedin: 'linkedin' in member ? member.linkedin : undefined,
+                  }}
+                />
               ))}
             </div>
             <p className="text-center text-sm text-muted-foreground font-light max-w-xl mx-auto">
