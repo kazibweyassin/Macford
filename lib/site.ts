@@ -316,6 +316,29 @@ export const teamMembers = [
     linkedin: 'https://ug.linkedin.com/in/ampaire-tumwebaze-61b300141',
   },
   {
+    name: 'Anan Mutabazi',
+    title: 'Managing Partner',
+    specialization: 'Corporate, Banking & Commercial',
+    experience: 'Managing Partner · Senior Counsel',
+    image: '/team/anan.jpeg',
+    description:
+      'Managing Partner and senior corporate counsel with deep experience in banking, corporate, finance, and complex commercial matters.',
+    bio: [
+      'Counsel Anan Mutabazi is a Managing Partner at McFord Advocates and a prominent Ugandan corporate lawyer. He holds a Master of Laws (LLM) in Banking, Corporate, Finance, and Securities Law from the University at Albany, SUNY, and is recognised as Senior Counsel.',
+      'His practice focuses on corporate affairs, commercial counsel, and high-stakes advisory work. He has served as legal counsel in significant matters, including representing Nalongo Estates Ltd (owned by Sarah Kizito and Godfrey Nyakana) in high-profile parliamentary committee hearings (COSASE) regarding the Centenary Park land lease dispute.',
+      'Beyond private practice, he has served as Head of Corporate Affairs at Weli Travel, overseeing corporate relations, executive leadership messaging, and client relations. He combines courtroom and boardroom experience with a commitment to clear leadership and community engagement in Kampala.',
+    ],
+    focus: [
+      'Corporate & commercial law',
+      'Banking, finance & securities',
+      'Complex commercial advisory',
+      'Land & high-profile disputes',
+      'Corporate affairs & governance',
+    ],
+    education:
+      'LLM Banking, Corporate, Finance & Securities Law, University at Albany, SUNY; Senior Counsel',
+  },
+  {
     name: 'Christopher Mwesigye',
     title: 'Associate Partner',
     specialization: 'Litigation & Dispute Resolution',
