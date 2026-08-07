@@ -81,7 +81,7 @@ export function Navbar() {
               />
             </Link>
 
-            <div className="hidden lg:flex items-center gap-0.5">
+              <div className="hidden lg:flex items-center gap-0.5">
               {siteConfig.nav.map((item) => {
                 const active =
                   item.href === '/'
@@ -111,7 +111,7 @@ export function Navbar() {
             </div>
 
             <div className="hidden lg:block">
-              <Link href="/contact" className="btn-secondary !h-10 !px-5 !text-[11px]">
+              <Link href="/contact" className="btn-secondary !h-10 !px-5 !text-[11px] border-brand hover:text-brand">
                 Consultation
               </Link>
             </div>

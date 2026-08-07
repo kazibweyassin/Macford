@@ -96,6 +96,9 @@
   --chart-4: oklch(0.8 0.09 80);
   --chart-5: oklch(0.35 0.04 255);
   --radius: 0.25rem;
+  /* Brand colour sampled from logo (deep teal) */
+  --brand: #0b5b57;
+  --brand-foreground: #ffffff;
 
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -352,6 +355,13 @@
     color: var(--primary-foreground);
     border: 1px solid color-mix(in oklch, white 8%, transparent);
   }
+
+  /* Brand utilities (minimal, for targeted accents) */
+  .text-brand { color: var(--brand) !important; }
+  .bg-brand { background: var(--brand) !important; color: var(--brand-foreground) !important; }
+  .border-brand { border-color: var(--brand) !important; }
+  .hover\:text-brand:hover { color: var(--brand) !important; }
+  .fill-brand svg { fill: var(--brand) !important; }
 
   /* Stat cell divider */
   .stat-divider {

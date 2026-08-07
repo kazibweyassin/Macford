@@ -43,7 +43,7 @@ export function Footer() {
               href={siteConfig.whatsapp.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-7 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent hover:text-champagne transition-colors group"
+              className="mt-7 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand hover:text-brand transition-colors group"
             >
               WhatsApp the firm
               <span
