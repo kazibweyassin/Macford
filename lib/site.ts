@@ -366,7 +366,8 @@ export const teamMembers = [
       'Client strategy & firm leadership',
       'Cross-border commercial matters',
     ],
-    education: 'Advocate of the High Court of Uganda',
+    education:
+      'LL.B., Makerere University; Diploma in Legal Practice, Law Development Centre; LL.M., University of Abidjan; Advocate of the High Court of Uganda',
     linkedin: 'https://ug.linkedin.com/in/ampaire-tumwebaze-61b300141',
   },
   {
@@ -484,7 +485,7 @@ export const teamMembers = [
     title: 'Corporate Support',
     specialization: 'Corporate Support',
     experience: 'Junior Associate',
-    image: '/team/advocate-03.jpg',
+    image: '/team/enoth.jpeg',
     description:
       'Rwangoga Enoth is a commercially focused legal practitioner supporting the firm’s corporate and transactional matters.',
     bio: [
