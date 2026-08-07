@@ -99,7 +99,6 @@ export const siteConfig = {
   ] as string[],
 
   areaServed: ['Uganda', 'East Africa', 'Kampala'] as string[],
-
   nav: [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'Our Firm' },
@@ -352,7 +351,7 @@ export const teamMembers = [
     name: 'Ampaire Tumwebaze',
     title: 'Founding Partner',
     specialization: 'Corporate, Commercial & Strategy',
-    fexperience: 'Founding Partner since 2016',
+    experience: 'Founding Partner since 2016',
     image: '/team/ampaire.jpeg',
     description:
       'Leads McFord Advocates with a focus on corporate advisory, commercial transactions, and lasting client relationships across Uganda and the region.',
@@ -369,6 +368,27 @@ export const teamMembers = [
     ],
     education: 'Advocate of the High Court of Uganda',
     linkedin: 'https://ug.linkedin.com/in/ampaire-tumwebaze-61b300141',
+  },
+  {
+    name: 'Mahad Kakooza',
+    title: 'Interim Managing Partner',
+    specialization: 'Land & Conveyancing',
+    experience: 'Interim Managing Partner · Head, Land & Conveyancing Practice',
+    image: '/team/mahad.jpeg',
+    description:
+      'Interim Managing Partner and head of the firm’s Land and Conveyancing Practice, advising on property transactions and conveyancing matters.',
+    bio: [
+      'Mahad Kakooza is the Interim Managing Partner of the firm and heads its Land and Conveyancing Practice. He specialises in advising individuals, businesses, financial institutions, and property developers on all aspects of land transactions, including acquisitions and disposals, due diligence, title verification, leasing, property financing, and the preparation and registration of conveyancing instruments.',
+      'With a meticulous approach to legal practice and a strong understanding of Uganda’s land law regime, Mahad is committed to delivering practical, commercially sound, and legally secure solutions that protect clients’ interests and facilitate seamless property transactions.',
+      'Beyond his core practice, Mahad has a broad understanding of Islamic finance and Sharia family law, enabling him to advise clients on matters requiring both legal expertise and sensitivity to Islamic legal principles. He is recognised for his professionalism, strategic thinking, and unwavering commitment to delivering exceptional client service.',
+    ],
+    focus: [
+      'Land transactions & conveyancing',
+      'Property due diligence & title verification',
+      'Leasing & property financing',
+      'Islamic finance & Sharia family law',
+    ],
+    education: 'Legal professional',
   },
   {
     name: 'Christopher Mwesigye',
@@ -479,24 +499,5 @@ export const teamMembers = [
       'Real estate & conveyancing',
     ],
     education: 'LL.B, Nkumba University; Postgraduate Diploma in Legal Practice, Law Development Centre',
-  },
-  {
-    name: 'Kakooza Mahad',
-    title: 'Partner',
-    specialization: 'Corporate & Commercial',
-    experience: 'Partner',
-    image: '/team/mahad.jpeg',
-    description:
-      'Partner at McFord Advocates with extensive experience in corporate and commercial transactions.',
-    bio: [
-      'Kakooza Mahad is a Partner at McFord Advocates specialising in corporate and commercial law. He advises clients on transactional matters, corporate governance, and strategic commercial advice.',
-      'Full profile details, qualifications, and representative matters to be provided by the firm.',
-    ],
-    focus: [
-      'Corporate law',
-      'Commercial transactions',
-      'Mergers & acquisitions',
-    ],
-    education: 'Legal professional',
   },
 ] as const

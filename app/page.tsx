@@ -3,6 +3,7 @@ import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { SectionHeader } from '@/components/ui/section-header'
 import { JsonLd } from '@/components/json-ld'
+import { HeroSlider, type HeroTeamMember } from '@/components/hero-slider'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -21,7 +22,6 @@ import {
   Pickaxe,
   type LucideIcon,
 } from 'lucide-react'
-import HeroSlider from '@/components/hero-slider'
 import {
   siteConfig,
   practiceAreas,
@@ -65,12 +65,25 @@ const practiceIcons: Record<string, LucideIcon> = {
 const mineralPractice = practiceAreas.find((p) => p.slug === 'mineral-law')!
 const homeInsights = getInsightsSorted().slice(0, 3)
 
-const HERO_IMAGE =
-  'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1920&q=80'
+// Trimmed source widths — these were requesting 1920/1400/1200px originals
+// for slots that never render wider than ~900px. Smaller requests load
+// faster and match actual rendered size much more closely.
+// Environmental/office photos only — these crossfade in the hero background.
+// Add more of the same kind (exterior, chambers, boardroom) as they become
+// available; avoid putting headshots in this array, see HERO_TEAM below.
+const HERO_BACKGROUND_IMAGES = [
+  'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1600&q=75',
+  // e.g. '/office/reception.jpg', '/office/boardroom.jpg'
+]
+
+// The hero slider will collect team member images automatically from
+// `lib/site.ts` when no `team` prop is provided. Keep HERO_BACKGROUND_IMAGES
+// populated with environmental photos only.
+
 const MINERAL_IMAGE =
-  'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=1400&q=80'
+  'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=1000&q=75'
 const CHAMBERS_IMAGE =
-  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=75'
 
 export default function Home() {
   return (
@@ -78,11 +91,52 @@ export default function Home() {
       <JsonLd id="home-faq-schema" data={faqJsonLd([...firmFaqs])} />
       <Navbar />
       <main>
-        {/* ─── HERO SLIDER (team) ─── */}
-        {/* Replace the hero with a team slider for experimentation */}
-        {/* The HeroSlider component is loaded client-side — run `pnpm install` to add Swiper before running the dev server. */}
-        {/** Render the client `HeroSlider` component */}
-        <HeroSlider />
+        {/* ─── HERO ───
+            Background photo(s) crossfade via HeroSlider (client component,
+            since it needs an interval timer). The copy below is passed in
+            as children so it still renders server-side for SEO. */}
+        <HeroSlider backgroundImages={HERO_BACKGROUND_IMAGES}>
+          <div className="inline-flex items-center gap-3 mb-7 animate-fade-up">
+            <span className="h-px w-9 bg-accent" />
+            <span className="eyebrow text-accent">
+              Kampala · Est. {siteConfig.established}
+            </span>
+          </div>
+
+          <h1 className="font-display text-[2.85rem] sm:text-5xl lg:text-[4rem] leading-[1.04] text-balance drop-shadow-sm animate-fade-up delay-100">
+            Clear counsel.
+            <span className="block text-champagne italic font-normal mt-1.5">
+              Confident decisions.
+            </span>
+          </h1>
+
+          <p className="mt-7 text-base sm:text-xl text-primary-foreground/90 max-w-xl leading-relaxed font-light drop-shadow-sm animate-fade-up delay-200">
+            Partner-led corporate counsel from Kampala, covering mineral law
+            and precious metal trade, transactions, and day-to-day commercial
+            advice for businesses across Uganda.
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-2 animate-fade-up delay-300">
+            {['Mineral law', 'Corporate', 'M&A', 'Banking', 'IP'].map((tag) => (
+              <span
+                key={tag}
+                className="border border-primary-foreground/15 bg-primary-foreground/[0.06] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-primary-foreground/70"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 animate-fade-up delay-400">
+            <Link href="/contact" className="btn-primary">
+              Request a Consultation
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link href="/services/mineral-law" className="btn-ghost-light">
+              Mineral Law & Metals
+            </Link>
+          </div>
+        </HeroSlider>
 
         {/* ─── CREDENTIAL STRIP ─── */}
         <section className="border-b border-border bg-paper">
@@ -110,16 +164,22 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── FEATURED: MINERAL LAW ─── */}
+        {/* ─── FEATURED: MINERAL LAW ───
+            Was lg:col-span-5 with min-h-full, which let the photo stretch
+            to match whatever height the text column happened to need —
+            on wide screens with short copy that still reads as an
+            oversized image. Now a fixed, capped height and a narrower
+            column so the photo reads as an accent, not the headline. */}
         <section className="section-y">
           <div className="container-page">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 border border-border overflow-hidden shadow-[var(--shadow-soft)]">
-              <div className="relative lg:col-span-5 min-h-[280px] sm:min-h-[360px] lg:min-h-full">
+              <div className="relative lg:col-span-4 h-[240px] sm:h-[300px] lg:h-auto lg:max-h-[480px]">
                 <Image
                   src={MINERAL_IMAGE}
                   alt="Gold and mineral trade - legal counsel"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  sizes="(max-width: 1024px) 100vw, 34vw"
+                  quality={75}
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-ink/30" />
@@ -131,7 +191,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="lg:col-span-7 bg-card p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
+              <div className="lg:col-span-8 bg-card p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="h-px w-7 bg-accent" />
                   <p className="eyebrow text-accent">01 · Featured practice</p>
@@ -169,18 +229,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── WHO WE ARE ─── */}
+        {/* ─── WHO WE ARE ───
+            Chambers photo was aspect-[4/5] at lg:col-span-5 — a tall
+            portrait taking up nearly half the section width. Narrowed
+            the column and flattened the aspect ratio slightly so the
+            image supports the copy instead of competing with it. */}
         <section className="section-y bg-secondary relative">
           <div className="absolute top-0 left-0 right-0 rule-gold opacity-50" />
           <div className="container-page">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              <div className="lg:col-span-5 order-2 lg:order-1">
-                <div className="relative aspect-[4/5] overflow-hidden border border-border shadow-[var(--shadow-lift)]">
+              <div className="lg:col-span-4 order-2 lg:order-1">
+                <div className="relative aspect-[4/5] lg:aspect-[3/4] max-w-sm mx-auto lg:max-w-none overflow-hidden border border-border shadow-[var(--shadow-lift)]">
                   <Image
                     src={CHAMBERS_IMAGE}
                     alt="Professional chambers at AfriCourts, Kampala"
                     fill
-                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    sizes="(max-width: 1024px) 60vw, 28vw"
+                    quality={75}
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
@@ -193,7 +258,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="lg:col-span-7 order-1 lg:order-2">
+              <div className="lg:col-span-8 order-1 lg:order-2">
                 <SectionHeader
                   eyebrow="Who We Are"
                   title="A full-service commercial practice, built around your business"
@@ -509,7 +574,7 @@ export default function Home() {
         </section>
 
         {/* ─── PERSONAL ATTENTION BAND ─── */}
-        <section className="relative overflow-hidden hero-mesh grain py-20 sm:py-28 text-primary-foreground">
+        <section className="relative overflow-hidden hero-mesh grain py-16 sm:py-24 text-primary-foreground">
           <div className="absolute top-0 left-0 right-0 rule-gold" />
           <div className="absolute bottom-0 left-0 right-0 rule-gold" />
           <div className="container-page relative">
