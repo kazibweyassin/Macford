@@ -353,7 +353,7 @@ export const teamMembers = [
     title: 'Managing Partner',
     specialization: 'Corporate, Commercial & Strategy',
     experience: 'Managing Partner since 2016',
-    image: '/team/ampaire-tumwebaze.jpg',
+    image: '/team/ampaire.jpeg',
     description:
       'Leads McFord Advocates with a focus on corporate advisory, commercial transactions, and lasting client relationships across Uganda and the region.',
     bio: [
