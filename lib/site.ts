@@ -482,7 +482,7 @@ export const teamMembers = [
   },
   {
     name: 'Rwangoga Enoth',
-    title: 'Corporate Support',
+    title: 'Legal Associate',
     specialization: 'Corporate Support',
     experience: 'Junior Associate',
     image: '/team/enoth.jpeg',
