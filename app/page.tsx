@@ -21,8 +21,7 @@ import {
   Pickaxe,
   type LucideIcon,
 } from 'lucide-react'
-import dynamic from 'next/dynamic'
-const HeroSlider = dynamic(() => import('@/components/hero-slider'), { ssr: false })
+import HeroSlider from '@/components/hero-slider'
 import {
   siteConfig,
   practiceAreas,
@@ -82,7 +81,7 @@ export default function Home() {
         {/* ─── HERO SLIDER (team) ─── */}
         {/* Replace the hero with a team slider for experimentation */}
         {/* The HeroSlider component is loaded client-side — run `pnpm install` to add Swiper before running the dev server. */}
-        {/** Dynamically load the HeroSlider component client-side */}
+        {/** Render the client `HeroSlider` component */}
         <HeroSlider />
 
         {/* ─── CREDENTIAL STRIP ─── */}
