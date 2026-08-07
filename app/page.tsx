@@ -21,6 +21,8 @@ import {
   Pickaxe,
   type LucideIcon,
 } from 'lucide-react'
+import dynamic from 'next/dynamic'
+const HeroSlider = dynamic(() => import('@/components/hero-slider'), { ssr: false })
 import {
   siteConfig,
   practiceAreas,
@@ -77,69 +79,11 @@ export default function Home() {
       <JsonLd id="home-faq-schema" data={faqJsonLd([...firmFaqs])} />
       <Navbar />
       <main>
-        {/* ─── HERO ─── */}
-        <section className="relative overflow-hidden text-primary-foreground min-h-[min(90vh,900px)] flex items-end sm:items-center">
-          <div className="absolute inset-0">
-            <Image
-              src={HERO_IMAGE}
-              alt="Legal chambers and professional counsel"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-[center_28%] scale-[1.03]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink/88 via-ink/55 to-ink/28" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/35" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_25%_75%,oklch(0.66_0.12_76_/_0.14),transparent_55%)]" />
-          </div>
-
-          <div className="absolute bottom-0 left-0 right-0 rule-gold" />
-
-          <div className="container-page relative w-full py-20 sm:py-28 lg:py-36">
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-3 mb-7 animate-fade-up">
-                <span className="h-px w-9 bg-accent" />
-                <span className="eyebrow text-accent">
-                  Kampala · Est. {siteConfig.established}
-                </span>
-              </div>
-
-              <h1 className="font-display text-[2.85rem] sm:text-5xl lg:text-[4rem] leading-[1.04] text-balance drop-shadow-sm animate-fade-up delay-100">
-                Clear counsel.
-                <span className="block text-champagne italic font-normal mt-1.5">
-                  Confident decisions.
-                </span>
-              </h1>
-
-              <p className="mt-7 text-base sm:text-xl text-primary-foreground/90 max-w-xl leading-relaxed font-light drop-shadow-sm animate-fade-up delay-200">
-                Partner-led corporate counsel from Kampala, covering mineral law
-                and precious metal trade, transactions, and day-to-day commercial
-                advice for businesses across Uganda.
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-2 animate-fade-up delay-300">
-                {['Mineral law', 'Corporate', 'M&A', 'Banking', 'IP'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="border border-primary-foreground/15 bg-primary-foreground/[0.06] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-primary-foreground/70"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-10 flex flex-col sm:flex-row gap-3 animate-fade-up delay-400">
-                <Link href="/contact" className="btn-primary">
-                  Request a Consultation
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link href="/services/mineral-law" className="btn-ghost-light">
-                  Mineral Law & Metals
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* ─── HERO SLIDER (team) ─── */}
+        {/* Replace the hero with a team slider for experimentation */}
+        {/* The HeroSlider component is loaded client-side — run `pnpm install` to add Swiper before running the dev server. */}
+        {/** Dynamically load the HeroSlider component client-side */}
+        <HeroSlider />
 
         {/* ─── CREDENTIAL STRIP ─── */}
         <section className="border-b border-border bg-paper">
