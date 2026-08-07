@@ -350,9 +350,9 @@ export const teamMembers = [
   },
   {
     name: 'Ampaire Tumwebaze',
-    title: 'Managing Partner',
+    title: 'Founding Partner',
     specialization: 'Corporate, Commercial & Strategy',
-    experience: 'Managing Partner since 2016',
+    fexperience: 'Founding Partner since 2016',
     image: '/team/ampaire.jpeg',
     description:
       'Leads McFord Advocates with a focus on corporate advisory, commercial transactions, and lasting client relationships across Uganda and the region.',
@@ -479,5 +479,24 @@ export const teamMembers = [
       'Real estate & conveyancing',
     ],
     education: 'LL.B, Nkumba University; Postgraduate Diploma in Legal Practice, Law Development Centre',
+  },
+  {
+    name: 'Kakooza Mahad',
+    title: 'Partner',
+    specialization: 'Corporate & Commercial',
+    experience: 'Partner',
+    image: '/team/mahad.jpeg',
+    description:
+      'Partner at McFord Advocates with extensive experience in corporate and commercial transactions.',
+    bio: [
+      'Kakooza Mahad is a Partner at McFord Advocates specialising in corporate and commercial law. He advises clients on transactional matters, corporate governance, and strategic commercial advice.',
+      'Full profile details, qualifications, and representative matters to be provided by the firm.',
+    ],
+    focus: [
+      'Corporate law',
+      'Commercial transactions',
+      'Mergers & acquisitions',
+    ],
+    education: 'Legal professional',
   },
 ] as const
