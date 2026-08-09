@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Outfit } from 'next/font/google'
 import { JsonLd } from '@/components/json-ld'
+import WhatsAppWidget from '@/components/whatsapp-widget'
 import { siteConfig } from '@/lib/site'
 import { organizationJsonLd } from '@/lib/seo'
 import './globals.css'
@@ -106,6 +107,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-background text-foreground font-body antialiased">
         <JsonLd id="organization-schema" data={organizationJsonLd()} />
         {children}
+        <WhatsAppWidget />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
