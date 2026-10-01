@@ -224,9 +224,7 @@ export function organizationJsonLd() {
             },
           })),
         },
-        employee: teamMembers
-          .filter((m) => m.name !== 'Legal Associate')
-          .map((member) => ({
+        employee: teamMembers.map((member) => ({
             '@type': 'Person',
             name: member.name,
             jobTitle: member.title,

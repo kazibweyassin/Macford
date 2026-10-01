@@ -463,24 +463,22 @@ export const teamMembers = [
     education: 'LL.B (Hons), Uganda Christian University, Mukono',
   },
   {
-    name: 'Legal Associate',
-    title: 'Legal Associate',
+    name: 'Mukama Kendra Hanan',
+    title: 'Administrator',
     specialization: 'Corporate Support',
-    experience: 'Associate',
-    image: '/team/advocate-02.jpg',
+    experience: 'Administrator',
+    image: '/Hanan.jpeg',
     description:
-      'Supports the firm’s corporate and commercial practice with research, drafting, and matter coordination.',
+      'Administrator supporting the firm’s corporate and commercial practice with office coordination, client correspondence, and matter administration.',
     bio: [
-      'A Legal Associate at McFord Advocates supporting the corporate and commercial practice with research, drafting, and matter coordination under partner supervision.',
-      'Work includes assisting on company documentation, commercial agreements, and the preparation of materials for client meetings, filings, and transactions.',
-      'Please contact the firm for a matter-specific introduction to the right lawyer on your file. Full profile details can be updated by the firm as biographies are finalised.',
+      'Mukama Kendra Hanan is an Administrator at McFord Advocates. She supports the firm’s corporate and commercial practice with office coordination, client correspondence, and matter administration.',
+      'Her work keeps files, appointments, and day-to-day practice operations organised so the legal team can focus on client advice and transactions.',
     ],
     focus: [
       'Corporate support',
-      'Commercial drafting assistance',
-      'Research & documentation',
+      'Matter administration',
+      'Client coordination',
     ],
-    education: 'Legal professional',
   },
   {
     name: 'Rwangoga Enoth',
